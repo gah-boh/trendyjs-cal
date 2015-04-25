@@ -1,0 +1,33 @@
+{
+  "name": "trendyjs-cal",
+  "version": "1.0.0",
+  "description": "A sample app for my Pittsburgh TechFest 2015 talk - TrendyJS 2015 Edition",
+  "main": "index.js",
+  "repository": "https://github.com/gah-boh/trendyjs-cal.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriel Obregon <gabo.obregon@gmail.com> (http://github.com/gah-boh)",
+  "license": "ISC",
+  "dependencies": {
+    "aurelia-dependency-injection": "git://github.com/aurelia/dependency-injection.git#0.6.0",
+    "aurelia-logging": "git://github.com/aurelia/logging.git#0.3.0",
+    "aurelia-metadata": "git://github.com/aurelia/metadata.git#0.4.0",
+    "core-js": "^0.8.4",
+    "di": "^2.0.0-pre-14",
+    "immutable": "^3.6.2",
+    "object-assign": "^2.0.0",
+    "react": "^0.13.2",
+    "reflux": "^0.2.7",
+    "rx": "^2.5.2"
+  },
+  "devDependencies": {
+    "babel": "^5.1.10",
+    "babel-core": "^5.1.10",
+    "babel-loader": "^5.0.0",
+    "express": "^4.12.3",
+    "gulp": "^3.8.11",
+    "gulp-util": "^3.0.4",
+    "webpack": "^1.8.5"
+  }
+}
