@@ -10,9 +10,44 @@ describe('Date Builder', () => {
         format = 'MM-DD-YYYY'
     });
 
+    describe('buildMonth', () => {
+
+        describe('with no year defined', () => {
+
+            it('should return an object with the month name', () => {
+                var result = sut.buildMonth(1);
+                expect(result.name).toBe('January');
+            });
+
+        });
+
+        describe('with year defined', () => {
+
+            var result;
+
+            beforeEach(() => {
+                result = sut.buildMonth(2, 2014);
+            });
+
+            it('should have array of days including edges for given year', () => {
+                expect(result.days.length).toBe(35);
+            });
+
+            it('should have the first day of the week of the month', () => {
+                expect(result.days[0].dayNumber).toBe(26);
+            });
+
+        });
+
+    });
+
     describe('daysForWeek', () => {
 
-        var startWeekDate = '04-05-2015'
+        var startWeekDate;
+
+        beforeEach(() => {
+            startWeekDate = '04-05-2015';
+        });
 
         it('should return 7 days', () => {
             var result = sut.daysForWeek(moment(startWeekDate, format));

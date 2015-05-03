@@ -1,7 +1,9 @@
 import React from 'react';
-import Day from './components/day';
 
-import moment from 'moment';
+import Month from './components/month'
+import {buildMonth} from './helpers/date-builder';
 
-React.render(<Day dayNumber="10" />, document.querySelector('.app'));
+var monthData = buildMonth(5);
+
+React.render(<Month month={monthData}/>, document.querySelector('.app'));
 

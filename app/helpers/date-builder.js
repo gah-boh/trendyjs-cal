@@ -5,6 +5,25 @@ function range(end) {
     return indexes.map((ignore, index) => index);
 }
 
+export function buildMonth(monthNumber, yearNumber) {
+    var momentMonth = yearNumber ? moment(`${monthNumber}-${yearNumber}`, 'MM-YYYY') : moment(monthNumber, 'MM') ;
+    var days = weeksForMonth(momentMonth)
+                            .map(firstDayOfWeek => {
+                                return daysForWeek(firstDayOfWeek).map(day => {
+                                    return {
+                                        dayNumber: day.date()
+                                    }
+                                })
+                            })
+                            .reduce((month, weekDays) => {
+                                return month.concat(weekDays);
+                            }, [])
+    return {
+        name: moment.localeData().months(momentMonth),
+        days
+    };
+}
+
 export function daysForWeek(startOfWeek) {
     return range(7).map(index => {
         return startOfWeek.clone().add(index, 'day');
