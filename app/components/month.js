@@ -3,15 +3,11 @@ import range from 'lodash/utility/range';
 
 import Day from './day';
 
-function constructWeeks(days) {
-    var amountOfWeeks = days.length / 7;
-    var dayElements = days.map( (day, index) => (<Day key={index} dayNumber={day.dayNumber.toString()} />));
-    return range(amountOfWeeks).map(weekNumber => {
-                var weekStart = weekNumber * 7;
-                return dayElements.slice(weekStart, weekStart + 7);
-           })
-           .map((week, index) => (<div className="week" key={index}>{week}</div>));
-    
+function constructWeeks(weeks) {
+    return weeks.map((week, weekIndex) => {
+        var days = week.map((day, dayIndex) => (<Day key={dayIndex} dayNumber={day.date} />));
+        return (<div className="week" key={weekIndex}>{days}</div>);
+    });
 }
 
 var Month = React.createClass({
@@ -19,7 +15,7 @@ var Month = React.createClass({
         month: React.PropTypes.object.isRequired
     },
     render() {
-        var weeks = constructWeeks(this.props.month.days);
+        var weeks = constructWeeks(this.props.month.weeks);
         return (
             <div className="month-view">
                 <div>{this.props.month.name}</div>

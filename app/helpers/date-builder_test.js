@@ -30,11 +30,16 @@ describe('Date Builder', () => {
             });
 
             it('should have array of days including edges for given year', () => {
-                expect(result.days.length).toBe(35);
+                expect(result.weeks.length).toBe(5);
             });
 
             it('should have the first day of the week of the month', () => {
-                expect(result.days[0].dayNumber).toBe(26);
+                expect(result.weeks[0][0].date).toBe(26);
+            });
+
+            it('should have the correct month for the date wether it is that month or not', () => {
+                var firstWeek = result.weeks[0];
+                expect(firstWeek[0].month).toBe(1);
             });
 
         });

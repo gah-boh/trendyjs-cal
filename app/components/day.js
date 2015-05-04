@@ -2,7 +2,7 @@ import React from 'react';
 
 var Day = React.createClass({
     propTypes: {
-        dayNumber: React.PropTypes.string.isRequired
+        dayNumber: React.PropTypes.number.isRequired
     },
     render() {
         return (
