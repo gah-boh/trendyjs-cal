@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var assign = require('object-assign');
+var karma = require('karma').server;
 
 var webpackConfig = require('./webpack.config');
 
@@ -27,6 +28,25 @@ gulp.task('webpack-watch', function() {
     customConfig.devtool = 'source-map';
     buildWebpack(customConfig);
 });
+
+gulp.task('test', function(done) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done);
+});
+
+gulp.task('test-watch', function() {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js'
+    });
+});
+
+gulp.task('serve', function() {
+    require('./serve');
+});
+
+gulp.task('tdd', ['webpack-watch', 'test-watch', 'serve']);
 
 gulp.task('default', ['webpack-watch']);
 
