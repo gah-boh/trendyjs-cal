@@ -70,7 +70,7 @@ describe('Date Builder', () => {
 
     });
 
-    describe('weeksForMonth', () => {
+    describe('firstDaysOfWeeksForMonth', () => {
         var april2015;
 
         beforeEach(() => {
@@ -78,18 +78,18 @@ describe('Date Builder', () => {
         });
 
         it('should return a length of 5 for the weeks', () => {
-            var result = sut.weeksForMonth(april2015);
+            var result = sut.firstDaysOfWeeksForMonth(april2015);
             expect(result.length).toBe(5);
         });
 
         it('should return march 29 as the first day of the first week', () => {
-            var result = sut.weeksForMonth(april2015)[0];
+            var result = sut.firstDaysOfWeeksForMonth(april2015)[0];
             expect(result.date()).toBe(29);
             expect(result.format('MM')).toBe('03');
         });
 
         it('should return may 2 as the last day of the of the last week', () => {
-            var weeks = sut.weeksForMonth(april2015);
+            var weeks = sut.firstDaysOfWeeksForMonth(april2015);
             var lastWeek = weeks[weeks.length - 1];
             expect(lastWeek.endOf('week').date()).toBe(2);
             expect(lastWeek.endOf('week').format('MM')).toBe('05');

@@ -16,6 +16,7 @@
     "core-js": "^0.8.4",
     "di": "^2.0.0-pre-14",
     "immutable": "^3.6.2",
+    "lodash": "^3.8.0",
     "moment": "^2.10.2",
     "object-assign": "^2.0.0",
     "react": "^0.13.2",

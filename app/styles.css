@@ -1,15 +1,25 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
 .app {
 	width: 100%;
-	margin-top: 0;
-	margin-right: auto;
-	margin-bottom: 0;
-	margin-left: auto;
 }
 
 .day {
 	position: relative;
-	width: 128px;
-	height: 128px;
+	width: 96px;
+	height: 96px;
 	border: 1px solid #ccc;
 }
 
@@ -17,4 +27,27 @@
 	position: absolute;
 	top: 5px;
 	left: 5px;
+}
+
+.month-view {
+    width: 674px;
+    margin: 0 auto;
+}
+
+.month-view .week {
+    float: left;
+    clear: both;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+.month-view .week:last-child {
+    border-bottom: 1px solid #ccc;
+}
+
+.month-view .week .day {
+    float: left;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
 }
