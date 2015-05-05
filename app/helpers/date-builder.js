@@ -1,6 +1,16 @@
 import range from 'lodash/utility/range';
 import moment from 'moment';
 
+export function buildWeek(dayNumber, monthNumber, yearNumber) {
+    var momentDate = yearNumber ? moment(`${dayNumber}-${monthNumber}`, 'DD-MM') : moment(`${dayNumber}-${monthNumber}-${yearNumber}`, 'DD-MM-YYYY');
+    return daysForWeek(momentDate.startOf('week'))
+                      .map(day => {
+                          return {
+                              date: day.date()+1,
+                              month: day.month()+1
+                          }
+                      });
+}
 
 export function buildMonth(monthNumber, yearNumber) {
     var momentMonth = yearNumber ? moment(`${monthNumber}-${yearNumber}`, 'MM-YYYY') : moment(monthNumber, 'MM') ;

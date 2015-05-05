@@ -10,6 +10,21 @@ describe('Date Builder', () => {
         format = 'MM-DD-YYYY'
     });
 
+    describe('buildWeek', () => {
+
+        it('should return an array with 7 days', () => {
+            var week = sut.buildWeek(1, 4, 2015);
+            expect(week.length).toBe(7);
+        });
+
+        it('should return the first day of the week for the given date', () => {
+            var week = sut.buildWeek(1, 4, 2015);
+            expect(week[0].date).toBe(30);
+            expect(week[0].month).toBe(3);
+        });
+
+    });
+
     describe('buildMonth', () => {
 
         describe('with no year defined', () => {
@@ -37,7 +52,7 @@ describe('Date Builder', () => {
                 expect(result.weeks[0][0].date).toBe(27);
             });
 
-            it('should have the correct month for the date whether it is that month or not', () => {
+            it('should have the correct month for the date whether it is in the given month or not', () => {
                 var firstWeek = result.weeks[0];
                 expect(firstWeek[0].month).toBe(1);
             });
