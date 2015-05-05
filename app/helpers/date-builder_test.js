@@ -37,7 +37,7 @@ describe('Date Builder', () => {
                 expect(result.weeks[0][0].date).toBe(26);
             });
 
-            it('should have the correct month for the date wether it is that month or not', () => {
+            it('should have the correct month for the date whether it is that month or not', () => {
                 var firstWeek = result.weeks[0];
                 expect(firstWeek[0].month).toBe(1);
             });
@@ -75,29 +75,30 @@ describe('Date Builder', () => {
 
     });
 
-    describe('firstDaysOfWeeksForMonth', () => {
+    describe('weeksForMonth', () => {
+
         var april2015;
 
         beforeEach(() => {
-            april2015 = moment('04-01-2015', format);
+            april2015 = moment('04-01-2015', format)
         });
 
         it('should return a length of 5 for the weeks', () => {
-            var result = sut.firstDaysOfWeeksForMonth(april2015);
+            var result = sut.weeksForMonth(april2015);
             expect(result.length).toBe(5);
         });
 
-        it('should return march 29 as the first day of the first week', () => {
-            var result = sut.firstDaysOfWeeksForMonth(april2015)[0];
-            expect(result.date()).toBe(29);
-            expect(result.format('MM')).toBe('03');
+        it('should return march 29 as the first day of the first week for april 2015', () => {
+            var firstWeek = sut.weeksForMonth(april2015)[0];
+            expect(firstWeek[0].date()).toBe(29);
+            expect(firstWeek[0].format('MM')).toBe('03');
         });
 
-        it('should return may 2 as the last day of the of the last week', () => {
-            var weeks = sut.firstDaysOfWeeksForMonth(april2015);
+        it('should return may 2 as the last day of the of the last week of april 2015', () => {
+            var weeks = sut.weeksForMonth(april2015);
             var lastWeek = weeks[weeks.length - 1];
-            expect(lastWeek.endOf('week').date()).toBe(2);
-            expect(lastWeek.endOf('week').format('MM')).toBe('05');
+            expect(lastWeek[0].endOf('week').date()).toBe(2);
+            expect(lastWeek[0].endOf('week').format('MM')).toBe('05');
         });
 
     });

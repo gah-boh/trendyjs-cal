@@ -4,9 +4,9 @@ import moment from 'moment';
 
 export function buildMonth(monthNumber, yearNumber) {
     var momentMonth = yearNumber ? moment(`${monthNumber}-${yearNumber}`, 'MM-YYYY') : moment(monthNumber, 'MM') ;
-    var weeks = firstDaysOfWeeksForMonth(momentMonth)
-                    .map(firstDayOfWeek => {
-                        return daysForWeek(firstDayOfWeek).map(day => {
+    var weeks = weeksForMonth(momentMonth)
+                    .map(week => {
+                        return week.map(day => {
                             return {
                                 date: day.date(),
                                 month: day.month()+1
@@ -25,12 +25,19 @@ export function daysForWeek(startOfWeek) {
     });
 }
 
-export function firstDaysOfWeeksForMonth(momentDate) {
-    var week = momentDate.clone().startOf('month').startOf('week');
-    var amountOfWeeks = ((week.diff(momentDate.clone().endOf('month').endOf('week'), 'days') -1) * -1) / 7;
-    return range(amountOfWeeks).map((index) => {
-        return week.clone().add(index, 'week');
-    });
+export function weeksForMonth(momentMonth) {
+    return firstDaysOfWeeksForMonth(momentMonth)
+                    .map(firstDayOfWeek => {
+                        return daysForWeek(firstDayOfWeek);
+                    });
+
+    function firstDaysOfWeeksForMonth(momentDate) {
+        var week = momentDate.clone().startOf('month').startOf('week');
+        var amountOfWeeks = ((week.diff(momentDate.clone().endOf('month').endOf('week'), 'days') -1) * -1) / 7;
+        return range(amountOfWeeks).map((index) => {
+            return week.clone().add(index, 'week');
+        });
+    }
 }
 
 export function monthsForYear(yearNum) {
