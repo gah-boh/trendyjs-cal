@@ -8,7 +8,7 @@ export function buildMonth(monthNumber, yearNumber) {
                     .map(week => {
                         return week.map(day => {
                             return {
-                                date: day.date(),
+                                date: day.date()+1,
                                 month: day.month()+1
                             }
                         })

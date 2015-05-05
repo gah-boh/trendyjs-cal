@@ -34,7 +34,7 @@ describe('Date Builder', () => {
             });
 
             it('should have the first day of the week of the month', () => {
-                expect(result.weeks[0][0].date).toBe(26);
+                expect(result.weeks[0][0].date).toBe(27);
             });
 
             it('should have the correct month for the date whether it is that month or not', () => {
