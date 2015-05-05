@@ -19,7 +19,7 @@ describe('Date Builder', () => {
 
         it('should return the first day of the week for the given date', () => {
             var week = sut.buildWeek(1, 4, 2015);
-            expect(week[0].date).toBe(30);
+            expect(week[0].date).toBe(29);
             expect(week[0].month).toBe(3);
         });
 
@@ -49,7 +49,7 @@ describe('Date Builder', () => {
             });
 
             it('should have the first day of the week of the month', () => {
-                expect(result.weeks[0][0].date).toBe(27);
+                expect(result.weeks[0][0].date).toBe(26);
             });
 
             it('should have the correct month for the date whether it is in the given month or not', () => {
@@ -104,16 +104,9 @@ describe('Date Builder', () => {
         });
 
         it('should return march 29 as the first day of the first week for april 2015', () => {
-            var firstWeek = sut.weeksForMonth(april2015)[0];
-            expect(firstWeek[0].date()).toBe(29);
-            expect(firstWeek[0].format('MM')).toBe('03');
-        });
-
-        it('should return may 2 as the last day of the of the last week of april 2015', () => {
-            var weeks = sut.weeksForMonth(april2015);
-            var lastWeek = weeks[weeks.length - 1];
-            expect(lastWeek[0].endOf('week').date()).toBe(2);
-            expect(lastWeek[0].endOf('week').format('MM')).toBe('05');
+            var firstDayOfFirstWeek = sut.weeksForMonth(april2015)[0];
+            expect(firstDayOfFirstWeek.date()).toBe(29);
+            expect(firstDayOfFirstWeek.format('MM')).toBe('03');
         });
 
     });
