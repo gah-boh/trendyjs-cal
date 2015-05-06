@@ -18,8 +18,8 @@ body {
 
 .day {
 	position: relative;
-	width: 96px;
-	height: 96px;
+	width: 674px;
+	height: 600px;
 	border: 1px solid #ccc;
 }
 
@@ -29,25 +29,46 @@ body {
 	left: 5px;
 }
 
-.month-view {
-    width: 674px;
+.month, .week {
     margin: 0 auto;
 }
 
-.month-view .week {
+.month {
+    width: 896px;
+}
+
+.month .week {
     float: left;
     clear: both;
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
 }
 
-.month-view .week:last-child {
+.month .week:last-child {
     border-bottom: 1px solid #ccc;
 }
 
-.month-view .week .day {
+.month .week .day {
     float: left;
+    width: 128px;
+    height: 96px;
     border-top: none;
     border-bottom: none;
+    border-left: none;
+}
+
+.week {
+    width: 898px;
+}
+
+.week .week {
+    float: left;
+    border-left: 1px solid #ccc;
+}
+
+.week .day {
+    float: left;
+    width: 128px;
+    height: 600px;
     border-left: none;
 }

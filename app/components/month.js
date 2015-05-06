@@ -17,7 +17,7 @@ var Month = React.createClass({
     render() {
         var weeks = constructWeeks(this.props.month.weeks);
         return (
-            <div className="month-view">
+            <div className="month">
                 <div>{this.props.month.name}</div>
                 {weeks}
             </div>
