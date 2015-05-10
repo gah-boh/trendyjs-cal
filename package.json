@@ -21,7 +21,8 @@
     "object-assign": "^2.0.0",
     "react": "^0.13.2",
     "reflux": "^0.2.7",
-    "rx": "^2.5.2"
+    "rx": "^2.5.2",
+    "superagent": "^1.2.0"
   },
   "devDependencies": {
     "babel": "^5.1.10",

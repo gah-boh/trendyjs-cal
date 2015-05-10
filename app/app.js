@@ -1,3 +1,4 @@
+import * as babelPolyfill from 'babel/polyfill';
 import React from 'react';
 import moment from 'moment';
 

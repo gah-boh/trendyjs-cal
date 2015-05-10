@@ -5,6 +5,10 @@ var port = 9000;
 
 var app = express();
 
+app.get('/events', function(req, res) {
+    res.send(require('./starter-day-events'));
+});
+
 app.use(express.static(path.join(__dirname, 'app')));
 
 app.listen(port);

@@ -4,7 +4,8 @@ import moment from 'moment';
 function createDayModel(momentDay) {
     return {
         date: momentDay.date(),
-        month: momentDay.month()+1
+        month: momentDay.month()+1,
+        year: momentDay.year()
     };
 }
 

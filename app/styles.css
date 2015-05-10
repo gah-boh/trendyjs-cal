@@ -26,12 +26,21 @@ ul {
 	width: 674px;
 	height: 600px;
 	border: 1px solid #ccc;
+    overflow: scroll;
 }
 
 .day > .number {
 	position: absolute;
 	top: 5px;
 	left: 5px;
+}
+
+.day .day-events {
+    width: 100%;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    padding: 5px 0;
 }
 
 .month, .week {
@@ -77,6 +86,14 @@ ul {
     border-top: none;
     border-bottom: none;
     border-left: none;
+}
+
+.month .day .day-event {
+    font-size: .7em;
+    color: #fff;
+    background-color: #357133;
+    padding: 0 5px;
+    margin-bottom: 1px;
 }
 
 .week {
