@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import range from 'lodash/utility/range';
 
 import Day from './day';
@@ -10,6 +11,12 @@ function constructWeeks(weeks) {
     });
 }
 
+function getDayNames() {
+    return moment.weekdays().map(dayName => {
+        return <li className="day-name">{dayName}</li>;
+    });
+}
+
 var Month = React.createClass({
     propTypes: {
         month: React.PropTypes.object.isRequired
@@ -18,7 +25,10 @@ var Month = React.createClass({
         var weeks = constructWeeks(this.props.month.weeks);
         return (
             <div className="month">
-                <div>{this.props.month.name}</div>
+                <h3>{this.props.month.name}</h3>
+                <ul>
+                    {getDayNames()}
+                </ul>
                 {weeks}
             </div>
         );

@@ -12,6 +12,11 @@ body {
     position: relative;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+}
+
 .app {
 	width: 100%;
 }
@@ -44,8 +49,25 @@ body {
     border-left: 1px solid #ccc;
 }
 
+.month .week:before {
+    content: '';
+    width: 40px;
+    height: 96px;
+    background-color: #8e8e8e;
+    position: absolute;
+    top: 0;
+    left: -40px;
+}
+
 .month .week:last-child {
     border-bottom: 1px solid #ccc;
+}
+
+.month li.day-name {
+    width: 128px;
+    list-style: none;
+    float: left;
+    text-align: center;
 }
 
 .month .week .day {

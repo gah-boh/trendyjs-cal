@@ -1,11 +1,11 @@
 import React from 'react';
 import moment from 'moment';
 
-import Week from './components/week';
-import {buildWeek} from './helpers/date-builder';
+import Month from './components/month';
+import {buildMonth} from './helpers/date-builder';
 
-var weekMoment = moment();
-var weekData = buildWeek(weekMoment.date(), weekMoment.month()+1, weekMoment.year());
+var date = moment();
+var monthData = buildMonth(date.month()+1, date.year());
 
-React.render(<Week week={weekData} monthName={moment.localeData().months(weekMoment)}/>, document.querySelector('.app'));
+React.render(<Month month={monthData} />, document.querySelector('.app'));
 
