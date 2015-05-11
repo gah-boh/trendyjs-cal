@@ -12,8 +12,8 @@ var responseStream = Rx.Observable.fromPromise(serverCalendarEvents).flatMap(cal
 var eventsByDate = responseStream.scan({}, (eventModel, currentEvent) => {
     eventModel[currentEvent.year] = eventModel[currentEvent.year] || {};
     eventModel[currentEvent.year][currentEvent.month] = eventModel[currentEvent.year][currentEvent.month] || {};
-    eventModel[currentEvent.year][currentEvent.month][currentEvent.day] = eventModel[currentEvent.year][currentEvent.month][currentEvent.day] || [];
-    eventModel[currentEvent.year][currentEvent.month][currentEvent.day].push(currentEvent);
+    eventModel[currentEvent.year][currentEvent.month][currentEvent.date] = eventModel[currentEvent.year][currentEvent.month][currentEvent.date] || [];
+    eventModel[currentEvent.year][currentEvent.month][currentEvent.date].push(currentEvent);
     return eventModel;
 });
 

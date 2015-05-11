@@ -5,7 +5,8 @@ var DayEvent = React.createClass({
     propTypes: {
         eventData: React.PropTypes.object.isRequired
     },
-    handleClick() {
+    handleClick(event) {
+        event.stopPropagation();
         currentEventAction.onNext(this.props.eventData);
     },
     render() {

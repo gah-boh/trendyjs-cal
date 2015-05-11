@@ -4,7 +4,7 @@
         "title": "Prepare for techfest talk",
         "year": 2015,
         "month": 5,
-        "day": 13,
+        "date": 13,
         "start": 12,
         "end": 15
     },
@@ -13,7 +13,7 @@
         "title": "Write some code",
         "year": 2015,
         "month": 5,
-        "day": 14,
+        "date": 14,
         "start": 15,
         "end": 19
     }

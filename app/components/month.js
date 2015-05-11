@@ -12,7 +12,7 @@ function constructWeeks(weeks, calendarEvents) {
                             calendarEvents[day.year][day.month] && 
                             calendarEvents[day.year][day.month][day.date] ?
                             calendarEvents[day.year][day.month][day.date] : [];
-            return (<Day key={dayIndex} dayNumber={day.date} dayEvents={dayEvents} />)
+            return (<Day key={dayIndex} dayInfo={day} dayEvents={dayEvents} />)
         });
         return (<div className="week" key={weekIndex}>{days}</div>);
     });
