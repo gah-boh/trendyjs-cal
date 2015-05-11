@@ -1,5 +1,7 @@
 import React from 'react';
 
+import DayEvent from './day-event';
+
 var Day = React.createClass({
     propTypes: {
         dayNumber: React.PropTypes.number.isRequired,
@@ -7,7 +9,7 @@ var Day = React.createClass({
     },
     render() {
         var events = this.props.dayEvents.map(dayEvent => {
-            return <div key={dayEvent.id} className="day-event">{dayEvent.title}</div>
+            return <DayEvent key={dayEvent.id} eventData={dayEvent} />
         });
         return (
             <div className="day">

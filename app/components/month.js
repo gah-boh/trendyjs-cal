@@ -5,8 +5,6 @@ import range from 'lodash/utility/range';
 import CalendarEventsStore from '../stores/calendar-events-store';
 import Day from './day';
 
-var calendarStore = new CalendarEventsStore();
-
 function constructWeeks(weeks, calendarEvents) {
     return weeks.map((week, weekIndex) => {
         var days = week.map((day, dayIndex) =>{
@@ -36,7 +34,7 @@ var Month = React.createClass({
         }
     },
     componentDidMount() {
-        calendarStore.eventsByDate.subscribe(eventsByDate => {
+        CalendarEventsStore.eventsByDate.subscribe(eventsByDate => {
             this.setState({calendarEvents: eventsByDate});
         });
     },
