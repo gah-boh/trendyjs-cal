@@ -124,3 +124,10 @@ ul {
     -moz-box-shadow: 0 0 5px #A2A2A2;
     box-shadow: 0 0 5px #A2A2A2;
 }
+
+.event-detail-view input.event-title {
+    font-size: 1.05em;
+    width: 100%;
+    margin: 10px 0;
+    padding-left: 5px;
+}
