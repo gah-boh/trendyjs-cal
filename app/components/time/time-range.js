@@ -20,11 +20,11 @@ var TimeRange = React.createClass({
     },
     render() {
         return (
-            <div>
+            <span>
                 <TimeSelect hour={this.props.start} timeChanged={this.handleStartChange} />
                 <span> - </span>
                 <TimeSelect hour={this.props.end} timeChanged={this.handleEndChange} />
-            </div>
+            </span>
         );
     }
 });

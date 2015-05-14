@@ -1,9 +1,15 @@
 import React from 'react';
+import _ from 'lodash';
 import moment from 'moment';
 
-var hourOptions = _.range(1, 13).map(hourNum => {
-    return <option value={hourNum} key={hourNum}>{hourNum}</option>
-});
+function hourOptions(hour) {
+    var commonRange = _.range(1, 12);
+    var twelfHour = [12];
+    var composedHours = hour > 11 ? twelfHour.concat(commonRange) : commonRange.concat(twelfHour);
+    return composedHours.map(hourNum => {
+        return <option value={hourNum} key={hourNum}>{hourNum}</option>
+    });
+}
 
 var TimeSelect = React.createClass({
     propTypes: {
@@ -22,7 +28,7 @@ var TimeSelect = React.createClass({
         var dayHalf = momentTime.format('a');
         return (
             <span>
-                <select value={hourDisplay} onChange={this.onHourChange} ref="hour">{hourOptions}</select>
+                <select value={hourDisplay} onChange={this.onHourChange} ref="hour">{hourOptions(this.props.hour)}</select>
                 <select value={dayHalf} onChange={this.onHourChange} ref="half">
                     <option value="am">am</option>
                     <option value="pm">pm</option>
