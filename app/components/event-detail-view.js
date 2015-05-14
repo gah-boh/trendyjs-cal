@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import eventsDetailStore from '../stores/events-detail-store';
 import {currentEventAction} from '../actions/event-actions';
+import TimeRange from './time/time-range';
 
 var localeData = moment.localeData();
 var monthOptions = _.range(1, 13).map(monthNum => {
@@ -12,23 +13,12 @@ var monthOptions = _.range(1, 13).map(monthNum => {
 var yearOptions = _.range(2010, 2021).map(yearNum => {
     return <option value={yearNum} key={yearNum}>{yearNum}</option>;
 });
-var hourOptions = _.range(1, 13).map(hourNum => {
-    return <option value={hourNum} key={hourNum}>{hourNum}</option>
-});
 
 function getDaysForMonth(monthNum, year) {
     var amountOfDays = moment(`${monthNum}-${year}`, 'M-yyyy').daysInMonth();
     return _.range(1, amountOfDays + 1).map(date => {
         return <option value={date} key={date}>{date}</option>
     });
-}
-
-function convertHours(military) {
-    return moment(military, 'H').format('h');
-}
-
-function convertDayHalf(military) {
-    return military > 11 ? 'pm' : 'am';
 }
 
 var EventDetailView = React.createClass({
@@ -61,18 +51,9 @@ var EventDetailView = React.createClass({
         var eventDetail = Object.assign({}, this.state.eventDetail, {month, date, year});
         this.setState({eventDetail, dateOptions});
     },
-    handleTimeChange() {
-        var startValue = React.findDOMNode(this.refs.start).value;
-        var startModifier = React.findDOMNode(this.refs.startModifier).value;
-        var start = getTime(startValue, startModifier);
-        var endValue = React.findDOMNode(this.refs.end).value;
-        var endModifier = React.findDOMNode(this.refs.endModifier).value;
-        var end = getTime(endValue, endModifier);
+    handleTimeChange(start, end) {
         var eventDetail = Object.assign({}, this.state.eventDetail, {start, end});
         this.setState({eventDetail});
-        function getTime(time, modifier) {
-            return moment(`${time}-${modifier}`, 'h-a').hours();
-        }
     },
     render() {
         if(!this.state.eventDetail) return null;
@@ -95,21 +76,7 @@ var EventDetailView = React.createClass({
                 </div>
                 <div>
                     <b>Event Time: </b>
-                    <select value={convertHours(eventDetail.start)} ref="start" onChange={this.handleTimeChange}>
-                        {hourOptions}
-                    </select>
-                    <select value={convertDayHalf(eventDetail.start)} ref="startModifier" onChange={this.handleTimeChange}>
-                        <option value="am">am</option>
-                        <option value="pm">pm</option>
-                    </select>
-                    <span> - </span>
-                    <select value={convertHours(eventDetail.end)} ref="end" onChange={this.handleTimeChange}>
-                        {hourOptions}
-                    </select>
-                    <select value={convertDayHalf(eventDetail.end)} ref="endModifier" onChange={this.handleTimeChange}>
-                        <option value="am">am</option>
-                        <option value="pm">pm</option>
-                    </select>
+                    <TimeRange start={eventDetail.start} end={eventDetail.end} onTimeChange={this.handleTimeChange} />
                 </div>
             </div>
         );
