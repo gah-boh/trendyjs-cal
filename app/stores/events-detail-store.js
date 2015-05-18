@@ -6,7 +6,6 @@ import moment from 'moment';
 import {currentEventAction, createEventAction} from '../actions/event-actions';
 
 var currentEvent = currentEventAction.map(current => {
-    if(!current) return null;
     return current;
 })
 .merge(createEventAction.map(dayInfo => {

@@ -3,7 +3,7 @@ import moment from 'moment';
 import _ from 'lodash';
 
 import eventsDetailStore from '../stores/events-detail-store';
-import {currentEventAction} from '../actions/event-actions';
+import {currentEventAction, editEventAction} from '../actions/event-actions';
 import TimeRange from './time/time-range';
 
 var localeData = moment.localeData();
@@ -31,7 +31,8 @@ var EventDetailView = React.createClass({
     componentDidMount() {
         eventsDetailStore.currentEvent.subscribe(eventDetail => {
             var dateOptions = eventDetail ? getDaysForMonth(eventDetail.month) : null;
-            this.setState({eventDetail, dateOptions});
+            var originalEvent = _.cloneDeep(eventDetail);
+            this.setState({eventDetail, originalEvent, dateOptions});
         });
     },
     handleClose() {
@@ -55,6 +56,17 @@ var EventDetailView = React.createClass({
         var eventDetail = Object.assign({}, this.state.eventDetail, {start, end});
         this.setState({eventDetail});
     },
+    onSave() {
+        var eventData = {
+            updated: this.state.eventDetail,
+            original: this.state.originalEvent
+        };
+        this.setState({originalEvent: this.state.eventDetail});
+        editEventAction.onNext(eventData);
+    },
+    onReset() {
+        console.log('resetting');
+    },
     render() {
         if(!this.state.eventDetail) return null;
         var eventDetail = this.state.eventDetail;
@@ -77,6 +89,10 @@ var EventDetailView = React.createClass({
                 <div>
                     <b>Event Time: </b>
                     <TimeRange start={eventDetail.start} end={eventDetail.end} onTimeChange={this.handleTimeChange} />
+                </div>
+                <div>
+                    <button onClick={this.onSave}>Save</button>
+                    <button onClick={this.onReset}>Reset</button>
                 </div>
             </div>
         );
