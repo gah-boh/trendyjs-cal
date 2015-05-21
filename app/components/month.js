@@ -1,28 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import range from 'lodash/utility/range';
+import _ from 'lodash';
 
 import CalendarEventsStore from '../stores/calendar-events-store';
 import Day from './day';
-
-function constructWeeks(weeks, calendarEvents) {
-    return weeks.map((week, weekIndex) => {
-        var days = week.map((day, dayIndex) =>{
-            var dayEvents = calendarEvents[day.year] &&
-                            calendarEvents[day.year][day.month] && 
-                            calendarEvents[day.year][day.month][day.date] ?
-                            calendarEvents[day.year][day.month][day.date] : [];
-            return (<Day key={dayIndex} dayInfo={day} dayEvents={dayEvents} />)
-        });
-        return (<div className="week" key={weekIndex}>{days}</div>);
-    });
-}
-
-function getDayNames() {
-    return moment.weekdays().map((dayName, index) => {
-        return <li key={index} className="day-name">{dayName}</li>;
-    });
-}
 
 var Month = React.createClass({
     propTypes: {
@@ -30,12 +11,12 @@ var Month = React.createClass({
     },
     getInitialState() {
         return {
-            calendarEvents: {}
+            calendarEvents: []
         }
     },
     componentDidMount() {
-        CalendarEventsStore.eventsByDate.subscribe(eventsByDate => {
-            this.setState({calendarEvents: eventsByDate});
+        CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
+            this.setState({calendarEvents});
         });
     },
     render() {
@@ -51,5 +32,36 @@ var Month = React.createClass({
         );
     }
 });
+
+function isDayOnEvent(day, event) {
+    var dayTime = getTime(day);
+    var eventTime = getTime(event);
+    return _.isEqual(dayTime, eventTime);
+    function getTime(dateContainer) {
+        return _.pick(dateContainer, ['year', 'month', 'date']);
+    };
+}
+
+function constructDays(week, calendarEvents) {
+    return week.map((day, dayIndex) =>{
+        var dayEvents = calendarEvents.filter(event => {
+            return isDayOnEvent(day, event);
+        });
+        return (<Day key={dayIndex} dayInfo={day} dayEvents={dayEvents} />)
+    });
+}
+
+function constructWeeks(weeks, calendarEvents) {
+    return weeks.map((week, weekIndex) => {
+        var days = constructDays(week, calendarEvents);
+        return (<div className="week" key={weekIndex}>{days}</div>);
+    });
+}
+
+function getDayNames() {
+    return moment.weekdays().map((dayName, index) => {
+        return <li key={index} className="day-name">{dayName}</li>;
+    });
+}
 
 export default Month;

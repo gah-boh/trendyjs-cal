@@ -31,8 +31,7 @@ var EventDetailView = React.createClass({
     componentDidMount() {
         eventsDetailStore.currentEvent.subscribe(eventDetail => {
             var dateOptions = eventDetail ? getDaysForMonth(eventDetail.month) : null;
-            var originalEvent = _.cloneDeep(eventDetail);
-            this.setState({eventDetail, originalEvent, dateOptions});
+            this.setState({eventDetail, dateOptions});
         });
     },
     handleClose() {
@@ -43,9 +42,9 @@ var EventDetailView = React.createClass({
         this.setState({eventDetail});
     },
     handleDateChange() {
-        var year = React.findDOMNode(this.refs.year).value;
-        var month = React.findDOMNode(this.refs.month).value;
-        var date = React.findDOMNode(this.refs.date).value;
+        var year = parseInt(React.findDOMNode(this.refs.year).value);
+        var month = parseInt(React.findDOMNode(this.refs.month).value);
+        var date = parseInt(React.findDOMNode(this.refs.date).value);
         var dateOptions = getDaysForMonth(month, year);
 
         date = date > dateOptions.length ? dateOptions.length : date;
@@ -57,12 +56,7 @@ var EventDetailView = React.createClass({
         this.setState({eventDetail});
     },
     onSave() {
-        var eventData = {
-            updated: this.state.eventDetail,
-            original: this.state.originalEvent
-        };
-        this.setState({originalEvent: this.state.eventDetail});
-        editEventAction.onNext(eventData);
+        editEventAction.onNext(this.state.eventDetail);
     },
     onReset() {
         console.log('resetting');
