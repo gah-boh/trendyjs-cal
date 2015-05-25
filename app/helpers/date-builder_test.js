@@ -13,12 +13,12 @@ describe('Date Builder', () => {
     describe('buildWeek', () => {
 
         it('should return an array with 7 days', () => {
-            var week = sut.buildWeek(1, 4, 2015);
+            var week = sut.buildWeek(2015, 5)
             expect(week.length).toBe(7);
         });
 
         it('should return the first day of the week for the given date', () => {
-            var week = sut.buildWeek(1, 4, 2015);
+            var week = sut.buildWeek(2015, 14)
             expect(week[0].date).toBe(29);
             expect(week[0].month).toBe(3);
         });

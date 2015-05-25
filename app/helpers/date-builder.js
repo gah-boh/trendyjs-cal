@@ -9,8 +9,8 @@ function createDayModel(momentDay) {
     };
 }
 
-export function buildWeek(dayNumber, monthNumber, yearNumber) {
-    var momentDate = yearNumber ? moment(`${dayNumber}-${monthNumber}-${yearNumber}`, 'D-M-YYYY') : moment(`${dayNumber}-${monthNumber}`, 'D-M') ;
+export function buildWeek(yearNumber, weekNumber) {
+    var momentDate = moment(`${yearNumber}`, 'YYYY').week(weekNumber);
     return daysForWeek(momentDate.startOf('week'))
                       .map(createDayModel);
 }
@@ -19,7 +19,7 @@ export function buildMonth(monthNumber, yearNumber) {
     var momentMonth = yearNumber ? moment(`${monthNumber}-${yearNumber}`, 'M-YYYY') : moment(monthNumber, 'M') ;
     var weeks = weeksForMonth(momentMonth)
                     .map(weekStart => {
-                        return buildWeek(weekStart.date(), weekStart.month()+1, weekStart.year());
+                        return buildWeek(weekStart.year(), weekStart.week());
                     });
     return {
         name: moment.localeData().months(momentMonth),
