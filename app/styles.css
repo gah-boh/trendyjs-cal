@@ -58,20 +58,6 @@ ul {
     border-left: 1px solid #ccc;
 }
 
-.month .week:before {
-    content: '';
-    width: 40px;
-    height: 96px;
-    background-color: #8e8e8e;
-    position: absolute;
-    top: 0;
-    left: -40px;
-}
-
-.month .week:last-child {
-    border-bottom: 1px solid #ccc;
-}
-
 .month li.day-name {
     width: 128px;
     list-style: none;
@@ -94,6 +80,36 @@ ul {
     background-color: #357133;
     padding: 0 5px;
     margin-bottom: 1px;
+}
+
+.week-wrapper  {
+    float: left;
+    position: relative;
+}
+
+.week-wrapper .week-select {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -5px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.week-wrapper .week-select a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.week-wrapper .week-select a:hover {
+    color: #9a9a9a;
+}
+
+.month .week-wrapper:last-child {
+    border-bottom: 1px solid #ccc;
 }
 
 .week {

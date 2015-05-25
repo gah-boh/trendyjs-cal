@@ -33,7 +33,12 @@ var Month = React.createClass({
 
 function constructWeeks(weeks, calendarEvents) {
     return weeks.map((week, weekIndex) => {
-        return (<Week week={week} calendarEvents={calendarEvents} key={weekIndex}></Week>);
+        return (
+            <div key={weekIndex} className="week-wrapper">
+                <div className="week-select"><a href="javascript:void(0)">SELECT</a></div>
+                <Week week={week} calendarEvents={calendarEvents}></Week>
+            </div>
+        );
     });
 }
 
