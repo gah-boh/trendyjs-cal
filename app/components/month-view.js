@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 
-import EventDetailView from './event-detail-view';
 import Month from './month';
 import {buildMonth} from '../helpers/date-builder';
 
@@ -24,7 +23,6 @@ var MonthView = React.createClass({
         return (
             <div>
                 <Month month={monthData} />
-                <EventDetailView />
             </div>
         );
     }
