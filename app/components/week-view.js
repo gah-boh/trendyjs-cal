@@ -28,7 +28,9 @@ var WeekView = React.createClass({
         var weekData = this.getWeekData();
         return (
             <div className="week-view">
-                <Week week={weekData} calendarEvents={this.state.calendarEvents} />
+                <div className="week-wrapper">
+                    <Week week={weekData} calendarEvents={this.state.calendarEvents} />
+                </div>
             </div>
         );
     }

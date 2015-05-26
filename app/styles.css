@@ -43,19 +43,19 @@ ul {
     padding: 5px 0;
 }
 
-.month, .week {
+.month-view, .week-view {
+    width: 896px;
     margin: 0 auto;
 }
 
-.month {
-    width: 896px;
+.week-wrapper {
+    border-left: 1px solid #ccc;
 }
 
 .month .week {
     float: left;
     clear: both;
     border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
 }
 
 .month li.day-name {

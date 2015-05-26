@@ -21,7 +21,7 @@ var MonthView = React.createClass({
     render() {
         var monthData = this.getMonthData();
         return (
-            <div>
+            <div className="month-view">
                 <Month month={monthData} />
             </div>
         );
