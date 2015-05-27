@@ -25,7 +25,7 @@ var Month = React.createClass({
         var weeks = constructWeeks(this.props.month.weeks, this.state.calendarEvents);
         return (
             <div className="month">
-                <h3>{this.props.month.name}</h3>
+                <h3>{this.props.month.name} {this.props.month.year}</h3>
                 <WeekdayNamesHeader />
                 {weeks}
             </div>

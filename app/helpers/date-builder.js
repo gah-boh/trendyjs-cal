@@ -15,14 +15,15 @@ export function buildWeek(yearNumber, weekNumber) {
                       .map(createDayModel);
 }
 
-export function buildMonth(monthNumber, yearNumber) {
-    var momentMonth = yearNumber ? moment(`${monthNumber}-${yearNumber}`, 'M-YYYY') : moment(monthNumber, 'M') ;
+export function buildMonth(month, year) {
+    var momentMonth = year ? moment(`${month}-${year}`, 'M-YYYY') : moment(month, 'M') ;
     var weeks = weeksForMonth(momentMonth)
                     .map(weekStart => {
                         return buildWeek(weekStart.year(), weekStart.week());
                     });
     return {
         name: moment.localeData().months(momentMonth),
+        year,
         weeks
     };
 }

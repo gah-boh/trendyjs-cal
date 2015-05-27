@@ -74,7 +74,7 @@ li.day-name {
     border-left: none;
 }
 
-.month .day .day-event {
+.day .day-event {
     font-size: .7em;
     color: #fff;
     background-color: #357133;
