@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {Link} from 'react-router';
 
 import Week from './week';
+import WeekdayNamesHeader from './weekday-names-header';
 import CalendarEventsStore from '../stores/calendar-events-store';
 
 var Month = React.createClass({
@@ -25,7 +26,7 @@ var Month = React.createClass({
         return (
             <div className="month">
                 <h3>{this.props.month.name}</h3>
-                <ul>{getDayNames()}</ul>
+                <WeekdayNamesHeader />
                 {weeks}
             </div>
         );
@@ -46,12 +47,6 @@ function constructWeeks(weeks, calendarEvents) {
                 <Week week={week} calendarEvents={calendarEvents}></Week>
             </div>
         );
-    });
-}
-
-function getDayNames() {
-    return moment.weekdays().map((dayName, index) => {
-        return <li key={index} className="day-name">{dayName}</li>;
     });
 }
 

@@ -3,6 +3,7 @@ var gutil = require('gulp-util');
 var webpack = require('webpack');
 var assign = require('object-assign');
 var karma = require('karma').server;
+var livereload = require('gulp-livereload');
 
 var webpackConfig = require('./webpack.config');
 
@@ -15,6 +16,7 @@ function buildWebpack(config) {
             colors: true,
             chunks: false
         }));
+        livereload.reload();
     });
 }
 
@@ -23,6 +25,7 @@ gulp.task('webpack', function() {
 });
 
 gulp.task('webpack-watch', function() {
+    livereload.listen();
     var customConfig = assign({}, webpackConfig);
     customConfig.watch = true;
     customConfig.devtool = 'source-map';

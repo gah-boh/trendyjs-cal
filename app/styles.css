@@ -58,7 +58,7 @@ ul {
     border-top: 1px solid #ccc;
 }
 
-.month li.day-name {
+li.day-name {
     width: 128px;
     list-style: none;
     float: left;
