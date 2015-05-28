@@ -5,10 +5,7 @@ import moment from 'moment';
 
 import {currentEventAction, createEventAction} from '../actions/event-actions';
 
-var currentEvent = currentEventAction.map(current => {
-    return current;
-})
-.merge(createEventAction.map(dayInfo => {
+var createEvent = createEventAction.map(dayInfo => {
     var start = moment().hour();
     return assign({
         id: shortid.generate(),
@@ -16,7 +13,8 @@ var currentEvent = currentEventAction.map(current => {
         start,
         end: start + 1
     }, dayInfo);
-}));
+});
+var currentEvent = currentEventAction.merge(createEvent);
 
 export default {currentEvent};
 
