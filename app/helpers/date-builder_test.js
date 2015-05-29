@@ -1,12 +1,12 @@
 import moment from 'moment';
-import * as dateBuilder from './date-builder';
+import DateBuilder from './date-builder';
 describe('Date Builder', () => {
 
     var sut;
     var format;
 
     beforeEach(() => {
-        sut = dateBuilder;
+        sut = new DateBuilder();
         format = 'MM-DD-YYYY'
     });
 

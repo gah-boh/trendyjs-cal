@@ -1,8 +1,12 @@
 import Rx from 'rx';
 
-var currentEventAction = new Rx.BehaviorSubject(null);
-var createEventAction = new Rx.Subject();
-var editEventAction = new Rx.BehaviorSubject(null);
+class EventActions {
+    constructor() {
+        this.currentEventAction = new Rx.BehaviorSubject(null);
+        this.createEventAction = new Rx.Subject();
+        this.editEventAction = new Rx.BehaviorSubject(null);
+    }
+}
 
-export default {currentEventAction, createEventAction, editEventAction};
+export default EventActions;
 

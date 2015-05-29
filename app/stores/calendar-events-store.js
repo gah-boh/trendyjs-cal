@@ -1,16 +1,22 @@
 import request from 'superagent';
 import Rx from 'rx';
+import {inject} from 'aurelia-dependency-injection';
 
-import {editEventAction} from '../actions/event-actions';
+import EventActions from '../actions/event-actions';
 
-var serverCalendarEvents = new Promise((resolve) => {
-    request.get('/events')
-    .end((err, res) => {
-        resolve(res.body);
-    });
-});
-var serverEventsStream = Rx.Observable.fromPromise(serverCalendarEvents);
-var calendarEvents = editEventAction.combineLatest(serverEventsStream, saveEvent);
+@inject(EventActions)
+class CalendarEventsStore{
+    constructor(EventActions) {
+        var serverCalendarEvents = new Promise((resolve) => {
+            request.get('/events')
+            .end((err, res) => {
+                resolve(res.body);
+            });
+        });
+        var serverEventsStream = Rx.Observable.fromPromise(serverCalendarEvents);
+        this.calendarEvents = EventActions.editEventAction.combineLatest(serverEventsStream, saveEvent);
+    }
+}
 
 function saveEvent(eventInfo, eventsByDate) {
     if(!eventInfo) return eventsByDate;
@@ -19,5 +25,5 @@ function saveEvent(eventInfo, eventsByDate) {
     }).concat([eventInfo]);
 }
 
-export default {calendarEvents};
+export default CalendarEventsStore;
 
