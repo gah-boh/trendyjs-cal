@@ -3,7 +3,8 @@ import {inject} from 'aurelia-dependency-injection';
 
 import TimeSelect from './time-select';
 
-var TimeRange = function(TimeSelect){
+TimeRange.inject = [TimeSelect];
+function TimeRange(TimeSelect){
     return React.createClass({
         propTypes: {
             start: React.PropTypes.number.isRequired,
@@ -31,7 +32,6 @@ var TimeRange = function(TimeSelect){
         }
     });
 }
-TimeRange.inject = [TimeSelect];
 
 export default TimeRange;
 

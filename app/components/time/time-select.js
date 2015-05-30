@@ -11,7 +11,7 @@ function hourOptions(hour) {
     });
 }
 
-var TimeSelect = function(){
+function TimeSelect(){
     return React.createClass({
         propTypes: {
             hour: React.PropTypes.number.isRequired,

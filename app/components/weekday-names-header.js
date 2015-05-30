@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-var WeekdayNamesHeader = function() {
+function WeekdayNamesHeader () {
     return React.createClass({
         render() {
             return (

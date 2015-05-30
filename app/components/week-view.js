@@ -6,7 +6,8 @@ import WeekDayNamesHeader from './weekday-names-header';
 import DateBuilder from '../helpers/date-builder';
 import CalendarEventsStore from '../stores/calendar-events-store';
 
-var WeekView = function(Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
+WeekView.inject = [Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore];
+function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
     return React.createClass({
         contextTypes: {
             router: React.PropTypes.func
@@ -49,7 +50,6 @@ var WeekView = function(Week, WeekDayNamesHeader, DateBuilder, CalendarEventsSto
         };
     }
 }
-WeekView.inject = [Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore];
 
 export default WeekView;
 

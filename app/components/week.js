@@ -2,7 +2,8 @@ import React from 'react';
 
 import Day from './day';
 
-var Week = function(Day) {
+Week.inject = [Day];
+function Week (Day) {
     return React.createClass({
         propTypes: {
             week: React.PropTypes.array.isRequired,
@@ -30,7 +31,6 @@ var Week = function(Day) {
         };
     }
 }
-Week.inject = [Day];
 
 export default Week;
 

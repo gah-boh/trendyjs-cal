@@ -3,7 +3,8 @@ import React from 'react';
 import EventActions from '../actions/event-actions';
 import DayEvent from './day-event';
 
-var Day = function(EventActions, DayEvent) {
+Day.inject = [EventActions, DayEvent];
+function Day(EventActions, DayEvent) {
     return React.createClass({
         propTypes: {
             dayInfo: React.PropTypes.object.isRequired,
@@ -27,7 +28,6 @@ var Day = function(EventActions, DayEvent) {
         }
     });
 }
-Day.inject = [EventActions, DayEvent];
 
 export default Day;
 

@@ -4,7 +4,8 @@ import moment from 'moment';
 import Month from './month';
 import DateBuilder from '../helpers/date-builder';
 
-var MonthView = function(Month, DateBuilder){
+MonthView.inject = [Month, DateBuilder];
+function MonthView(Month, DateBuilder){
     return React.createClass({
         contextTypes: {
             router: React.PropTypes.func
@@ -29,7 +30,6 @@ var MonthView = function(Month, DateBuilder){
         }
     });
 }
-MonthView.inject = [Month, DateBuilder];
 
 export default MonthView;
 

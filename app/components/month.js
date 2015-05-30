@@ -8,7 +8,8 @@ import Week from './week';
 import WeekdayNamesHeader from './weekday-names-header';
 import CalendarEventsStore from '../stores/calendar-events-store';
 
-var Month = function(Week, WeekdayNamesHeader, CalendarEventsStore) {
+Month.inject = [Week, WeekdayNamesHeader, CalendarEventsStore];
+function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
     return React.createClass({
         propTypes: {
             month: React.PropTypes.object.isRequired
@@ -52,6 +53,5 @@ var Month = function(Week, WeekdayNamesHeader, CalendarEventsStore) {
         });
     }
 }
-Month.inject = [Week, WeekdayNamesHeader, CalendarEventsStore];
 
 export default Month;

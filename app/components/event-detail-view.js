@@ -6,8 +6,8 @@ import EventsDetailStore from '../stores/events-detail-store';
 import EventActions from '../actions/event-actions';
 import TimeRange from './time/time-range';
 
-
-var EventDetailView = function(EventsDetailStore, EventActions, TimeRange) {
+EventDetailView.inject = [EventsDetailStore, EventActions, TimeRange];
+function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
 
     var localeData = moment.localeData();
     var monthOptions = _.range(1, 13).map(monthNum => {
@@ -96,7 +96,6 @@ var EventDetailView = function(EventsDetailStore, EventActions, TimeRange) {
         }
     });
 }
-EventDetailView.inject = [EventsDetailStore, EventActions, TimeRange];
 
 export default EventDetailView;
 
