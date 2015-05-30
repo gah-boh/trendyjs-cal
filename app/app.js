@@ -4,6 +4,8 @@ import moment from 'moment';
 import Router from 'react-router';
 import {Container} from 'aurelia-dependency-injection';
 
+import diRegister from './helpers/di-register';
+
 import AppView from './components/app-view';
 import MonthView from './components/month-view';
 import WeekView from './components/week-view';
@@ -12,6 +14,7 @@ var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 
 var container = new Container();
+diRegister(container);
 
 var routes = (
     <Route name="app" path="/" handler={container.get(AppView)}>
