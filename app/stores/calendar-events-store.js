@@ -7,20 +7,28 @@ import EventActions from '../actions/event-actions';
 @inject(EventActions)
 class CalendarEventsStore{
     constructor(EventActions) {
-        var serverCalendarEvents = new Promise((resolve) => {
+        this.calendarEvents = new Rx.BehaviorSubject([]);
+
+        var serverEventsStream = Rx.Observable.fromPromise(this.getEventsFromServer());
+        var editEventStream = EventActions.editEventAction.withLatestFrom(this.calendarEvents, saveEvent);
+
+        serverEventsStream
+            .merge(editEventStream)
+            .subscribe(events => {
+                this.calendarEvents.onNext(events)
+            });
+    }
+    getEventsFromServer() {
+        return new Promise((resolve) => {
             request.get('/events')
             .end((err, res) => {
                 resolve(res.body);
             });
         });
-        var serverEventsStream = Rx.Observable.fromPromise(serverCalendarEvents).flatMap(event => event);
-        this.calendarEvents = EventActions.editEventAction
-                                          .merge(serverEventsStream)
-                                          .scan([], saveEvent).publish().refCount();
     }
 }
 
-function saveEvent(eventsByDate, eventInfo) {
+function saveEvent(eventInfo, eventsByDate) {
     if(!eventInfo) return eventsByDate;
     return eventsByDate.filter(event => {
         return event.id !== eventInfo.id;
