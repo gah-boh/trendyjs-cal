@@ -13,12 +13,14 @@ class CalendarEventsStore{
                 resolve(res.body);
             });
         });
-        var serverEventsStream = Rx.Observable.fromPromise(serverCalendarEvents);
-        this.calendarEvents = EventActions.editEventAction.combineLatest(serverEventsStream, saveEvent);
+        var serverEventsStream = Rx.Observable.fromPromise(serverCalendarEvents).flatMap(event => event);
+        this.calendarEvents = EventActions.editEventAction
+                                          .merge(serverEventsStream)
+                                          .scan([], saveEvent).publish().refCount();
     }
 }
 
-function saveEvent(eventInfo, eventsByDate) {
+function saveEvent(eventsByDate, eventInfo) {
     if(!eventInfo) return eventsByDate;
     return eventsByDate.filter(event => {
         return event.id !== eventInfo.id;
