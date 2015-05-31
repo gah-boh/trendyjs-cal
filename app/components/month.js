@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import _ from 'lodash';
+import Immutable from 'immutable';
 
 import {Link} from 'react-router';
 
@@ -16,7 +17,7 @@ function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
         },
         getInitialState() {
             return {
-                calendarEvents: []
+                calendarEvents: Immutable.List()
             }
         },
         componentDidMount() {
@@ -38,7 +39,7 @@ function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
 
     function constructWeeks(weeks, calendarEvents) {
         return weeks.map((week, weekIndex) => {
-            var firstDay = week[0];
+            var firstDay = week.first();
             var weekStartDate = moment(`${firstDay.date}-${firstDay.month}-${firstDay.year}`, 'D-M-YYYY');
             return (
                 <div key={weekIndex} className="week-wrapper">

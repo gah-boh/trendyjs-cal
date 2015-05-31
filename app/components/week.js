@@ -1,4 +1,5 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import Day from './day';
 
@@ -6,8 +7,8 @@ Week.inject = [Day];
 function Week (Day) {
     return React.createClass({
         propTypes: {
-            week: React.PropTypes.array.isRequired,
-            calendarEvents: React.PropTypes.array.isRequired
+            week: ImmutablePropTypes.list.isRequired,
+            calendarEvents: ImmutablePropTypes.list.isRequired
         },
         render() {
             var days = this.props.week.map((day, index) => {

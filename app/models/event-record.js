@@ -1,6 +1,5 @@
 import Immutable from 'immutable';
 import moment from 'moment';
-import {transient} from 'aurelia-dependency-injection';
 
 var today = moment();
 

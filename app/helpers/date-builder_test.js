@@ -1,12 +1,15 @@
 import moment from 'moment';
 import DateBuilder from './date-builder';
+import {Container} from 'aurelia-dependency-injection';
+
 describe('Date Builder', () => {
 
     var sut;
     var format;
 
     beforeEach(() => {
-        sut = new DateBuilder();
+        var container = new Container();
+        sut = container.get(DateBuilder);
         format = 'MM-DD-YYYY'
     });
 
@@ -14,13 +17,13 @@ describe('Date Builder', () => {
 
         it('should return an array with 7 days', () => {
             var week = sut.buildWeek(2015, 5)
-            expect(week.length).toBe(7);
+            expect(week.size).toBe(7);
         });
 
         it('should return the first day of the week for the given date', () => {
             var week = sut.buildWeek(2015, 14)
-            expect(week[0].date).toBe(29);
-            expect(week[0].month).toBe(3);
+            expect(week.first().date).toBe(29);
+            expect(week.first().month).toBe(3);
         });
 
     });
@@ -45,16 +48,16 @@ describe('Date Builder', () => {
             });
 
             it('should have array of days including edges for given year', () => {
-                expect(result.weeks.length).toBe(5);
+                expect(result.weeks.size).toBe(5);
             });
 
             it('should have the first day of the week of the month', () => {
-                expect(result.weeks[0][0].date).toBe(26);
+                expect(result.weeks.first().first().date).toBe(26);
             });
 
             it('should have the correct month for the date whether it is in the given month or not', () => {
-                var firstWeek = result.weeks[0];
-                expect(firstWeek[0].month).toBe(1);
+                var firstWeek = result.weeks.first();
+                expect(firstWeek.first().month).toBe(1);
             });
 
         });

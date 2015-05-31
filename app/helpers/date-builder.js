@@ -1,19 +1,20 @@
 import range from 'lodash/utility/range';
 import moment from 'moment';
+import Immutable from 'immutable';
+import {inject} from 'aurelia-dependency-injection';
 
-function createDayModel(momentDay) {
-    return {
-        date: momentDay.date(),
-        month: momentDay.month()+1,
-        year: momentDay.year()
-    };
-}
+import DayRecord from '../models/day-record';
 
+@inject(DayRecord)
 export default class DateBuilder {
+    constructor(DayRecord) {
+        this.DayRecord = DayRecord;
+    }
     buildWeek(yearNumber, weekNumber) {
         var momentDate = moment(`${yearNumber}`, 'YYYY').week(weekNumber);
-        return this.daysForWeek(momentDate.startOf('week'))
-                          .map(createDayModel);
+        var week = this.daysForWeek(momentDate.startOf('week'))
+                          .map(this.createDayModel.bind(this));
+        return Immutable.List(week);
     }
     buildMonth(month, year) {
         var momentMonth = year ? moment(`${month}-${year}`, 'M-YYYY') : moment(month, 'M') ;
@@ -21,11 +22,19 @@ export default class DateBuilder {
                         .map(weekStart => {
                             return this.buildWeek(weekStart.year(), weekStart.week());
                         });
+        // TODO: Return an immutable record
         return {
             name: moment.localeData().months(momentMonth),
             year,
-            weeks
+            weeks: Immutable.List(weeks)
         };
+    }
+    createDayModel(momentDay) {
+        return new this.DayRecord({
+            date: momentDay.date(),
+            month: momentDay.month()+1,
+            year: momentDay.year()
+        });
     }
     daysForWeek(startOfWeek) {
         return range(7).map(index => {

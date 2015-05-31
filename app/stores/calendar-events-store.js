@@ -1,6 +1,7 @@
 import request from 'superagent';
 import Rx from 'rx';
 import {inject} from 'aurelia-dependency-injection';
+import Immutable from 'immutable';
 
 import EventActions from '../actions/event-actions';
 import EventRecord from '../models/event-record';
@@ -9,7 +10,9 @@ import EventRecord from '../models/event-record';
 class CalendarEventsStore{
     constructor(EventActions, request, EventRecord) {
         var serverEventsStream = Rx.Observable.fromPromise(this.getEventsFromServer())
-                                               .map(events => events.map(event => new EventRecord(event)));
+        .map(events => {
+            return Immutable.List(events.map(event => new EventRecord(event)));
+        });
         var editEventStream = EventActions.editEventAction.map(saveEvent);
         var removeEventStream = EventActions.removeEventAction.map(removeEvent);
 

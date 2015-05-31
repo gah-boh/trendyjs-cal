@@ -20,6 +20,7 @@
     "moment": "^2.10.2",
     "object-assign": "^2.0.0",
     "react": "^0.13.2",
+    "react-immutable-proptypes": "^0.1.7",
     "react-router": "^0.13.3",
     "reflux": "^0.2.7",
     "rx": "^2.5.2",

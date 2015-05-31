@@ -1,4 +1,5 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import EventActions from '../actions/event-actions';
 import DayEvent from './day-event';
@@ -8,7 +9,7 @@ function Day(EventActions, DayEvent) {
     return React.createClass({
         propTypes: {
             dayInfo: React.PropTypes.object.isRequired,
-            dayEvents: React.PropTypes.array.isRequired
+            dayEvents: ImmutablePropTypes.list.isRequired
         },
         createEvent() {
             EventActions.createEventAction.onNext(this.props.dayInfo);
