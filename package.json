@@ -5,6 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/gah-boh/trendyjs-cal.git",
   "scripts": {
+    "start": "gulp tdd",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriel Obregon <gabo.obregon@gmail.com> (http://github.com/gah-boh)",
