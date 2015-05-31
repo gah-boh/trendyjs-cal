@@ -34,7 +34,7 @@ class CalendarEventsStore{
 function saveEvent(eventInfo) {
     return (eventsByDate) => {
         return filterEvents(eventInfo, eventsByDate)
-                .concat(eventInfo);
+                .push(eventInfo);
     };
 }
 
