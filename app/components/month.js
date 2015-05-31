@@ -21,9 +21,12 @@ function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
             }
         },
         componentDidMount() {
-            CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
+            this.disposableCalendarEvents = CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
                 this.setState({calendarEvents});
             });
+        },
+        componentWillUnmount() {
+            this.disposableCalendarEvents.dispose();
         },
         render() {
             var weeks = constructWeeks(this.props.month.weeks, this.state.calendarEvents);

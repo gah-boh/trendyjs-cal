@@ -22,9 +22,12 @@ function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
         },
         mixins: [PureRenderMixin],
         componentWillMount() {
-            CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
+            this.disposableCalendarEvents = CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
                 this.setState({calendarEvents});
             });
+        },
+        componentWillUnmount() {
+            this.disposableCalendarEvents.dispose();
         },
         getWeekData() {
             var {router} = this.context;

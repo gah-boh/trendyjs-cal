@@ -8,6 +8,9 @@ import EventRecord from '../models/event-record';
 
 @inject(EventActions, request, EventRecord)
 class CalendarEventsStore{
+
+    calendarEvents = new Rx.BehaviorSubject(Immutable.List());
+
     constructor(EventActions, request, EventRecord) {
         var serverEventsStream = Rx.Observable.fromPromise(this.getEventsFromServer())
         .map(events => {
@@ -15,11 +18,13 @@ class CalendarEventsStore{
         });
         var editEventStream = EventActions.editEventAction.map(saveEvent);
         var removeEventStream = EventActions.removeEventAction.map(removeEvent);
-
-        this.calendarEvents = serverEventsStream
+        serverEventsStream
             .merge(editEventStream)
             .merge(removeEventStream)
-            .scan((model, action)=> action(model));
+            .scan((model, action)=> action(model))
+            .subscribe(events => {
+                this.calendarEvents.onNext(events)
+            });
     }
     getEventsFromServer() {
         return new Promise((resolve) => {
