@@ -1,5 +1,5 @@
 # TrendyJS 2015 - Edition
-Sample app for my Pittsburgh TechFest talk. This app shows how to use [React](https://facebook.github.io/react/), [React Router](https://github.com/rackt/react-router), [RxJS](https://github.com/Reactive-Extensions/RxJS), [Immutable](https://facebook.github.io/immutable-js/), and [Aurelia's dependency injection](https://github.com/aurelia/dependency-injection) among other libraries.
+Sample app for my Pittsburgh TechFest talk. This app shows how to use [React](https://facebook.github.io/react/), [React Router](https://github.com/rackt/react-router), [RxJS](https://github.com/Reactive-Extensions/RxJS), [Immutable](https://facebook.github.io/immutable-js/), and [Aurelia's dependency injection](https://github.com/aurelia/dependency-injection) together and with ES2015 using [Babel](http://babeljs.io/) and finally a [webpack](http://webpack.github.io/) build.
 
 ## Installation
 - Clone the repo
