@@ -10,8 +10,7 @@ import AppView from './components/app-view';
 import MonthView from './components/month-view';
 import WeekView from './components/week-view';
 
-var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
+var {Route, DefaultRoute} = Router;
 
 var container = new Container();
 diRegister(container);

@@ -9,15 +9,15 @@ import EventActions from '../actions/event-actions';
 
 @inject(EventActions, EventRecord)
 class EventsDetailStore {
-    constructor(EventActions) {
+    constructor(EventActions, EventRecord) {
         var createEvent = EventActions.createEventAction.map(dayInfo => {
             var start = moment().hour();
-            return new EventRecord(assign({
+            return new EventRecord({
                 id: shortid.generate(),
                 title: "New Event",
                 start,
                 end: start + 1
-            }, dayInfo));
+            }).merge(dayInfo);
         });
         var removeEvent = EventActions.removeEventAction.map(() => null);
         this.currentEvent = EventActions.currentEventAction
