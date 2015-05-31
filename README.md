@@ -5,6 +5,7 @@ Sample app for my Pittsburgh TechFest talk. This app shows how to use [React](ht
 - Clone the repo
 - Run `npm install`
 - To build and start the server run `npm start`
+- Go to `localhost:9000` to see the app
 
 ## Excercises
 This project has several missing features on purpose. They are marked with `TODO:` The purpose of this is to allow you to play around with these technologies without having to set up a whole project, and having a point of reference.
