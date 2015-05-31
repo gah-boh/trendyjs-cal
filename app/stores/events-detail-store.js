@@ -18,7 +18,7 @@ class EventsDetailStore {
                 end: start + 1
             }, dayInfo);
         });
-        var removeEvent = EventActions.removeEventAction.map(()=> null);
+        var removeEvent = EventActions.removeEventAction.map(() => null);
         this.currentEvent = EventActions.currentEventAction
                                         .merge(createEvent)
                                         .merge(removeEvent);
