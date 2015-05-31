@@ -9,12 +9,12 @@ class CalendarEventsStore{
     constructor(EventActions, request) {
         var serverEventsStream = Rx.Observable.fromPromise(this.getEventsFromServer());
         var editEventStream = EventActions.editEventAction.map(saveEvent);
+        var removeEventStream = EventActions.removeEventAction.map(removeEvent);
 
         this.calendarEvents = serverEventsStream
             .merge(editEventStream)
-            .scan((model, action)=> {
-                return action(model)
-            });
+            .merge(removeEventStream)
+            .scan((model, action)=> action(model));
     }
     getEventsFromServer() {
         return new Promise((resolve) => {
@@ -28,10 +28,19 @@ class CalendarEventsStore{
 
 function saveEvent(eventInfo) {
     return (eventsByDate) => {
-        return eventsByDate.filter(event => {
-            return event.id !== eventInfo.id;
-        }).concat([eventInfo]);
+        return filterEvents(eventInfo, eventsByDate)
+                .concat(eventInfo);
     };
+}
+
+function removeEvent(eventInfo) {
+    return (eventsByDate) => filterEvents(eventInfo, eventsByDate);
+}
+
+function filterEvents(eventInfo, eventsByDate) {
+    return eventsByDate.filter(event => {
+        return event.id !== eventInfo.id;
+    });
 }
 
 export default CalendarEventsStore;

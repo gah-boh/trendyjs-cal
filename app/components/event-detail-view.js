@@ -61,8 +61,8 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
         onSave() {
             EventActions.editEventAction.onNext(this.state.eventDetail);
         },
-        onReset() {
-            console.log('resetting');
+        onRemove() {
+            EventActions.removeEventAction.onNext(this.state.eventDetail);
         },
         render() {
             if(!this.state.eventDetail) return null;
@@ -89,7 +89,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
                     </div>
                     <div>
                         <button onClick={this.onSave}>Save</button>
-                        <button onClick={this.onReset}>Reset</button>
+                        <button onClick={this.onRemove}>Remove</button>
                     </div>
                 </div>
             );

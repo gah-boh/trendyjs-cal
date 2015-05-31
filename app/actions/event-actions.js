@@ -5,6 +5,7 @@ class EventActions {
         this.currentEventAction = new Rx.BehaviorSubject(null);
         this.createEventAction = new Rx.Subject();
         this.editEventAction = new Rx.Subject();
+        this.removeEventAction = new Rx.Subject();
     }
 }
 

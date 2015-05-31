@@ -18,7 +18,10 @@ class EventsDetailStore {
                 end: start + 1
             }, dayInfo);
         });
-        this.currentEvent = EventActions.currentEventAction.merge(createEvent);
+        var removeEvent = EventActions.removeEventAction.map(()=> null);
+        this.currentEvent = EventActions.currentEventAction
+                                        .merge(createEvent)
+                                        .merge(removeEvent);
     }
 }
 
