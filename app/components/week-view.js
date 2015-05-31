@@ -7,6 +7,8 @@ import WeekDayNamesHeader from './weekday-names-header';
 import DateBuilder from '../helpers/date-builder';
 import CalendarEventsStore from '../stores/calendar-events-store';
 
+const {PureRenderMixin} = React.addons;
+
 WeekView.inject = [Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore];
 function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
     return React.createClass({
@@ -18,6 +20,7 @@ function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
                 calendarEvents: Immutable.List()
             };
         },
+        mixins: [PureRenderMixin],
         componentWillMount() {
             CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
                 this.setState({calendarEvents});

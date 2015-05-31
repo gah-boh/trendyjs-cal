@@ -5,6 +5,11 @@ module.exports = {
         path: __dirname + '/app',
         filename: 'bundle.js'
     },
+    resolve: {
+        alias: {
+            react$: 'react/addons'
+        }
+    },
     module: {
         loaders: [
             {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}

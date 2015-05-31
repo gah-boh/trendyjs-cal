@@ -3,6 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import Day from './day';
 
+const {PureRenderMixin} = React.addons;
+
 Week.inject = [Day];
 function Week (Day) {
     return React.createClass({
@@ -10,6 +12,7 @@ function Week (Day) {
             week: ImmutablePropTypes.list.isRequired,
             calendarEvents: ImmutablePropTypes.list.isRequired
         },
+        mixins: [PureRenderMixin],
         render() {
             var days = this.props.week.map((day, index) => {
                 var dayEvents = this.props.calendarEvents.filter(event => {

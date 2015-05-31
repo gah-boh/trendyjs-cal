@@ -15,4 +15,5 @@ This project has several missing features on purpose. They are marked with `TODO
     - add buttons for going to the previous and the next month with routes.
 - date-builder.js
     - Make the buildMonth method return an immutable data structure.
+    - Add the `PureRender` mixin to the month.js component when pasing in immutable from buildMonth in previous step.
 

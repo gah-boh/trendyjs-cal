@@ -2,6 +2,7 @@ import React from 'react';
 import {inject} from 'aurelia-dependency-injection';
 
 import TimeSelect from './time-select';
+const {PureRenderMixin} = React.addons;
 
 TimeRange.inject = [TimeSelect];
 function TimeRange(TimeSelect){
@@ -11,6 +12,7 @@ function TimeRange(TimeSelect){
             end: React.PropTypes.number.isRequired,
             onTimeChange: React.PropTypes.func.isRequired
         },
+        mixins: [PureRenderMixin],
         validateTimes(start, end) {
             end = start >= end ? start + 1 : end;
             this.props.onTimeChange(start, end);

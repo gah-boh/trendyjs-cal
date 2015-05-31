@@ -1,13 +1,17 @@
 import React from 'react';
 
 import EventActions from '../actions/event-actions';
+import EventRecord from '../models/event-record';
 
-DayEvent.inject = [EventActions];
-function DayEvent(EventActions){
+const {PureRenderMixin} = React.addons;
+
+DayEvent.inject = [EventActions, EventRecord];
+function DayEvent(EventActions, EventRecord){
     return React.createClass({
         propTypes: {
-            eventData: React.PropTypes.object.isRequired
+            eventData: React.PropTypes.instanceOf(EventRecord).isRequired
         },
+        mixins: [PureRenderMixin],
         handleClick(event) {
             event.stopPropagation();
             EventActions.currentEventAction.onNext(this.props.eventData);

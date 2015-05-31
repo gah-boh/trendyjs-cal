@@ -7,6 +7,8 @@ import EventsDetailStore from '../stores/events-detail-store';
 import EventActions from '../actions/event-actions';
 import TimeRange from './time/time-range';
 
+const {PureRenderMixin} = React.addons;
+
 EventDetailView.inject = [EventsDetailStore, EventActions, TimeRange];
 function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
 
@@ -20,10 +22,10 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
 
     function getDaysForMonth(monthNum, year) {
         var amountOfDays = moment(`${monthNum}-${year}`, 'M-yyyy').daysInMonth();
-        return _.range(1, amountOfDays + 1).map(date => {
+        var days = _.range(1, amountOfDays + 1).map(date => {
             return <option value={date} key={date}>{date}</option>
         });
-
+        return Immutable.List(days);
     }
     return React.createClass({
         getInitialState() {
@@ -38,6 +40,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
                 this.setState({eventDetail, dateOptions});
             });
         },
+        mixins: [PureRenderMixin],
         handleClose() {
             EventActions.currentEventAction.onNext(null);
         },
@@ -51,7 +54,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
             var date = parseInt(React.findDOMNode(this.refs.date).value);
             var dateOptions = getDaysForMonth(month, year);
 
-            date = date > dateOptions.length ? dateOptions.length : date;
+            date = date > dateOptions.size ? dateOptions.size : date;
             var eventDetail = this.state.eventDetail.merge({month, date, year});
             this.setState({eventDetail, dateOptions});
         },

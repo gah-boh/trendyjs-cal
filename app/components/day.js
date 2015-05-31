@@ -4,6 +4,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import EventActions from '../actions/event-actions';
 import DayEvent from './day-event';
 
+const {PureRenderMixin} = React.addons;
+
 Day.inject = [EventActions, DayEvent];
 function Day(EventActions, DayEvent) {
     return React.createClass({
@@ -11,6 +13,7 @@ function Day(EventActions, DayEvent) {
             dayInfo: React.PropTypes.object.isRequired,
             dayEvents: ImmutablePropTypes.list.isRequired
         },
+        mixins: [PureRenderMixin],
         createEvent() {
             EventActions.createEventAction.onNext(this.props.dayInfo);
         },
