@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import _ from 'lodash';
+import Immutable from 'immutable';
 
 import EventsDetailStore from '../stores/events-detail-store';
 import EventActions from '../actions/event-actions';
@@ -41,7 +42,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
             EventActions.currentEventAction.onNext(null);
         },
         updateTitle(event) {
-            var eventDetail = Object.assign({}, this.state.eventDetail, {title: event.target.value});
+            var eventDetail = this.state.eventDetail.set('title', event.target.value);
             this.setState({eventDetail});
         },
         handleDateChange() {
@@ -51,11 +52,11 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
             var dateOptions = getDaysForMonth(month, year);
 
             date = date > dateOptions.length ? dateOptions.length : date;
-            var eventDetail = Object.assign({}, this.state.eventDetail, {month, date, year});
+            var eventDetail = this.state.eventDetail.merge({month, date, year});
             this.setState({eventDetail, dateOptions});
         },
         handleTimeChange(start, end) {
-            var eventDetail = Object.assign({}, this.state.eventDetail, {start, end});
+            var eventDetail = this.state.eventDetail.merge({start, end});
             this.setState({eventDetail});
         },
         onSave() {

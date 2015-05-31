@@ -3,11 +3,13 @@ import Rx from 'rx';
 import {inject} from 'aurelia-dependency-injection';
 
 import EventActions from '../actions/event-actions';
+import EventRecord from '../models/event-record';
 
-@inject(EventActions, request)
+@inject(EventActions, request, EventRecord)
 class CalendarEventsStore{
-    constructor(EventActions, request) {
-        var serverEventsStream = Rx.Observable.fromPromise(this.getEventsFromServer());
+    constructor(EventActions, request, EventRecord) {
+        var serverEventsStream = Rx.Observable.fromPromise(this.getEventsFromServer())
+                                               .map(events => events.map(event => new EventRecord(event)));
         var editEventStream = EventActions.editEventAction.map(saveEvent);
         var removeEventStream = EventActions.removeEventAction.map(removeEvent);
 
