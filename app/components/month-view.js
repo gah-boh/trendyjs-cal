@@ -22,6 +22,7 @@ function MonthView(Month, DateBuilder){
         },
         render() {
             var monthData = this.getMonthData();
+            // TODO: Add buttons/links to go to next or previous month
             return (
                 <div className="month-view">
                     <Month month={monthData} />
