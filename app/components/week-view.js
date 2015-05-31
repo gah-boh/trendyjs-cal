@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import Immutable from 'immutable';
 
 import Week from './week';
 import WeekDayNamesHeader from './weekday-names-header';
@@ -14,7 +15,7 @@ function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
         },
         getInitialState() {
             return {
-                calendarEvents: []
+                calendarEvents: Immutable.List()
             };
         },
         componentWillMount() {
@@ -29,7 +30,7 @@ function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
         },
         render() {
             var weekData = this.getWeekData();
-            var {month, year} = getDateTitles(weekData[0]);
+            var {month, year} = getDateTitles(weekData.first());
             return (
                 <div className="week-view">
                     <h3>{month} {year}</h3>
