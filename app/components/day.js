@@ -18,7 +18,7 @@ function Day(EventActions, DayEvent) {
             EventActions.createEventAction.onNext(this.props.dayInfo);
         },
         render() {
-            var events = this.props.dayEvents.map(dayEvent => {
+            const events = this.props.dayEvents.map(dayEvent => {
                 return <DayEvent key={dayEvent.id} eventData={dayEvent} />
             });
             return (

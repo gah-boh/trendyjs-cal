@@ -11,17 +11,17 @@ function MonthView(Month, DateBuilder){
             router: React.PropTypes.func
         },
         getMonthData() {
-            var {router} = this.context;
+            const {router} = this.context;
             var {month, year} = router.getCurrentQuery();
             if(!month || !year) {
-                let date = moment();
+                const date = moment();
                 month = date.month()+1
                 year = date.year();
             }
             return DateBuilder.buildMonth(month, year);
         },
         render() {
-            var monthData = this.getMonthData();
+            const monthData = this.getMonthData();
             // TODO: Add buttons/links to go to next or previous month
             return (
                 <div className="month-view">

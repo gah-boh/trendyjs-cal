@@ -29,7 +29,7 @@ function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
             this.disposableCalendarEvents.dispose();
         },
         render() {
-            var weeks = constructWeeks(this.props.month.weeks, this.state.calendarEvents);
+            const weeks = constructWeeks(this.props.month.weeks, this.state.calendarEvents);
             return (
                 <div className="month">
                     <h3>{this.props.month.name} {this.props.month.year}</h3>
@@ -42,8 +42,8 @@ function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
 
     function constructWeeks(weeks, calendarEvents) {
         return weeks.map((week, weekIndex) => {
-            var firstDay = week.first();
-            var weekStartDate = moment(`${firstDay.date}-${firstDay.month}-${firstDay.year}`, 'D-M-YYYY');
+            const firstDay = week.first();
+            const weekStartDate = moment(`${firstDay.date}-${firstDay.month}-${firstDay.year}`, 'D-M-YYYY');
             return (
                 <div key={weekIndex} className="week-wrapper">
                     <div className="week-select">

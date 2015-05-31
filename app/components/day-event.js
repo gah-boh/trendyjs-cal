@@ -17,7 +17,7 @@ function DayEvent(EventActions, EventRecord){
             EventActions.currentEventAction.onNext(this.props.eventData);
         },
         render() {
-            var dayEvent = this.props.eventData;
+            const dayEvent = this.props.eventData;
             return (
                 <div onClick={this.handleClick} className="day-event">{dayEvent.title}</div>
             );

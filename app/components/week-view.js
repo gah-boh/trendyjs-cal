@@ -30,13 +30,13 @@ function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
             this.disposableCalendarEvents.dispose();
         },
         getWeekData() {
-            var {router} = this.context;
-            var {year, week} = router.getCurrentParams();
+            const {router} = this.context;
+            const {year, week} = router.getCurrentParams();
             return DateBuilder.buildWeek(year, week - 1);
         },
         render() {
-            var weekData = this.getWeekData();
-            var {month, year} = getDateTitles(weekData.first());
+            const weekData = this.getWeekData();
+            const {month, year} = getDateTitles(weekData.first());
             return (
                 <div className="week-view">
                     <h3>{month} {year}</h3>
@@ -50,7 +50,7 @@ function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
     });
 
     function getDateTitles(dayInfo) {
-        var date = moment(`${dayInfo.month}`, 'M');
+        const date = moment(`${dayInfo.month}`, 'M');
         return {
             month: moment.localeData().months(date),
             year: date.year()

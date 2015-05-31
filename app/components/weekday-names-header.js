@@ -4,9 +4,7 @@ import moment from 'moment';
 function WeekdayNamesHeader () {
     return React.createClass({
         render() {
-            return (
-                <ul>{getDayNames()}</ul>
-            );
+            return <ul>{getDayNames()}</ul>;
         }
     });
 

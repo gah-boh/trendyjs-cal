@@ -12,17 +12,17 @@ const {PureRenderMixin} = React.addons;
 EventDetailView.inject = [EventsDetailStore, EventActions, TimeRange];
 function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
 
-    var localeData = moment.localeData();
-    var monthOptions = _.range(1, 13).map(monthNum => {
+    const localeData = moment.localeData();
+    const monthOptions = _.range(1, 13).map(monthNum => {
         return <option value={monthNum} key={monthNum}>{localeData.months(moment(monthNum, 'M'))}</option>;
     });
-    var yearOptions = _.range(2010, 2021).map(yearNum => {
+    const yearOptions = _.range(2010, 2021).map(yearNum => {
         return <option value={yearNum} key={yearNum}>{yearNum}</option>;
     });
 
     function getDaysForMonth(monthNum, year) {
-        var amountOfDays = moment(`${monthNum}-${year}`, 'M-yyyy').daysInMonth();
-        var days = _.range(1, amountOfDays + 1).map(date => {
+        const amountOfDays = moment(`${monthNum}-${year}`, 'M-yyyy').daysInMonth();
+        const days = _.range(1, amountOfDays + 1).map(date => {
             return <option value={date} key={date}>{date}</option>
         });
         return Immutable.List(days);
@@ -36,7 +36,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
         },
         componentDidMount() {
             EventsDetailStore.currentEvent.subscribe(eventDetail => {
-                var dateOptions = eventDetail ? getDaysForMonth(eventDetail.month) : null;
+                const dateOptions = eventDetail ? getDaysForMonth(eventDetail.month) : null;
                 this.setState({eventDetail, dateOptions});
             });
         },
@@ -45,21 +45,21 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
             EventActions.currentEventAction.onNext(null);
         },
         updateTitle(event) {
-            var eventDetail = this.state.eventDetail.set('title', event.target.value);
+            const eventDetail = this.state.eventDetail.set('title', event.target.value);
             this.setState({eventDetail});
         },
         handleDateChange() {
-            var year = parseInt(React.findDOMNode(this.refs.year).value);
-            var month = parseInt(React.findDOMNode(this.refs.month).value);
-            var date = parseInt(React.findDOMNode(this.refs.date).value);
-            var dateOptions = getDaysForMonth(month, year);
+            const year = parseInt(React.findDOMNode(this.refs.year).value);
+            const month = parseInt(React.findDOMNode(this.refs.month).value);
+            const rawDate = parseInt(React.findDOMNode(this.refs.date).value);
+            const dateOptions = getDaysForMonth(month, year);
 
-            date = date > dateOptions.size ? dateOptions.size : date;
-            var eventDetail = this.state.eventDetail.merge({month, date, year});
+            const date = rawDate > dateOptions.size ? dateOptions.size : rawDate;
+            const eventDetail = this.state.eventDetail.merge({month, date, year});
             this.setState({eventDetail, dateOptions});
         },
         handleTimeChange(start, end) {
-            var eventDetail = this.state.eventDetail.merge({start, end});
+            const eventDetail = this.state.eventDetail.merge({start, end});
             this.setState({eventDetail});
         },
         onSave() {
@@ -70,7 +70,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
         },
         render() {
             if(!this.state.eventDetail) return null;
-            var eventDetail = this.state.eventDetail;
+            const eventDetail = this.state.eventDetail;
             return (
                 <div className="event-detail-view">
                     <div onClick={this.handleClose}>X</div>
