@@ -16,6 +16,33 @@
         "date": 14,
         "start": 15,
         "end": 19
+    },
+    {
+        "id": 3,
+        "title": "Prepare slides for talk",
+        "year": 2015,
+        "month": 6,
+        "date": 9,
+        "start": 15,
+        "end": 19
+    },
+    {
+        "id": 4,
+        "title": "Make sure code doesn't suck",
+        "year": 2015,
+        "month": 6,
+        "date": 9,
+        "start": 15,
+        "end": 19
+    },
+    {
+        "id": 5,
+        "title": "TechFest",
+        "year": 2015,
+        "month": 6,
+        "date": 13,
+        "start": 9,
+        "end": 19
     }
 ]
 
