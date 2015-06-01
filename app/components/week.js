@@ -1,5 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import _ from 'lodash';
 
 import Day from './day';
 
@@ -18,7 +19,7 @@ function Week (Day) {
                 const dayEvents = this.props.calendarEvents.filter(event => {
                     return isDayOnEvent(day, event);
                 });
-                return (<Day key={index} dayInfo={day} dayEvents={dayEvents} />)
+                return (<Day key={index} dayInfo={day} dayEvents={dayEvents} />);
             });
             return (
                 <div className="week">{days}</div>
@@ -32,7 +33,7 @@ function Week (Day) {
         return _.isEqual(dayTime, eventTime);
         function getTime(dateContainer) {
             return _.pick(dateContainer, ['year', 'month', 'date']);
-        };
+        }
     }
 }
 

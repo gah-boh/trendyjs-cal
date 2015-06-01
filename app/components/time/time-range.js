@@ -1,5 +1,4 @@
 import React from 'react';
-import {inject} from 'aurelia-dependency-injection';
 
 import TimeSelect from './time-select';
 const {PureRenderMixin} = React.addons;

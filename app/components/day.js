@@ -19,7 +19,7 @@ function Day(EventActions, DayEvent) {
         },
         render() {
             const events = this.props.dayEvents.map(dayEvent => {
-                return <DayEvent key={dayEvent.id} eventData={dayEvent} />
+                return <DayEvent key={dayEvent.id} eventData={dayEvent} />;
             });
             return (
                 <div onClick={this.createEvent} className="day">

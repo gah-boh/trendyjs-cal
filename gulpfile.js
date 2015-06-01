@@ -1,9 +1,11 @@
+/* eslint-env node */
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var assign = require('object-assign');
 var karma = require('karma').server;
 var livereload = require('gulp-livereload');
+var path = require('path');
 
 var webpackConfig = require('./webpack.config');
 
@@ -34,14 +36,14 @@ gulp.task('webpack-watch', function() {
 
 gulp.task('test', function(done) {
     karma.start({
-        configFile: __dirname + '/karma.conf.js',
+        configFile: path.join(__dirname, '/karma.conf.js'),
         singleRun: true
     }, done);
 });
 
 gulp.task('test-watch', function() {
     karma.start({
-        configFile: __dirname + '/karma.conf.js'
+        configFile: path.join(__dirname, '/karma.conf.js')
     });
 });
 

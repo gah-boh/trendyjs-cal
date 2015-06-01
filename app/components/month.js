@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import _ from 'lodash';
 import Immutable from 'immutable';
 
 import {Link} from 'react-router';
@@ -18,7 +17,7 @@ function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
         getInitialState() {
             return {
                 calendarEvents: Immutable.List()
-            }
+            };
         },
         componentDidMount() {
             this.disposableCalendarEvents = CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
@@ -47,8 +46,8 @@ function Month(Week, WeekdayNamesHeader, CalendarEventsStore) {
             return (
                 <div key={weekIndex} className="week-wrapper">
                     <div className="week-select">
-                        <a href="javascript:void(0)">
-                            <Link to="week" params={{year: weekStartDate.year(), week: weekStartDate.week()+1}}>SELECT</Link>
+                        <a href="#">
+                            <Link to="week" params={{year: weekStartDate.year(), week: weekStartDate.week() + 1}}>SELECT</Link>
                         </a>
                     </div>
                     <Week week={week} calendarEvents={calendarEvents}></Week>

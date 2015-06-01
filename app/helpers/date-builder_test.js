@@ -10,18 +10,18 @@ describe('Date Builder', () => {
     beforeEach(() => {
         var container = new Container();
         sut = container.get(DateBuilder);
-        format = 'MM-DD-YYYY'
+        format = 'MM-DD-YYYY';
     });
 
     describe('buildWeek', () => {
 
         it('should return an array with 7 days', () => {
-            var week = sut.buildWeek(2015, 5)
+            var week = sut.buildWeek(2015, 5);
             expect(week.size).toBe(7);
         });
 
         it('should return the first day of the week for the given date', () => {
-            var week = sut.buildWeek(2015, 14)
+            var week = sut.buildWeek(2015, 14);
             expect(week.first().date).toBe(29);
             expect(week.first().month).toBe(3);
         });
@@ -98,7 +98,7 @@ describe('Date Builder', () => {
         var april2015;
 
         beforeEach(() => {
-            april2015 = moment('04-01-2015', format)
+            april2015 = moment('04-01-2015', format);
         });
 
         it('should return a length of 5 for the weeks', () => {

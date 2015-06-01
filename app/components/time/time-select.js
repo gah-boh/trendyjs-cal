@@ -7,7 +7,7 @@ function hourOptions(hour) {
     const twelfHour = [12];
     const composedHours = hour > 11 ? twelfHour.concat(commonRange) : commonRange.concat(twelfHour);
     return composedHours.map(hourNum => {
-        return <option value={hourNum} key={hourNum}>{hourNum}</option>
+        return <option value={hourNum} key={hourNum}>{hourNum}</option>;
     });
 }
 

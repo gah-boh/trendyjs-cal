@@ -1,6 +1,5 @@
-import * as babelPolyfill from 'babel/polyfill';
+import * as babelPolyfill from 'babel/polyfill'; // eslint-disable-line
 import React from 'react';
-import moment from 'moment';
 import Router from 'react-router';
 import {Container} from 'aurelia-dependency-injection';
 

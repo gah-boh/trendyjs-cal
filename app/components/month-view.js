@@ -15,7 +15,7 @@ function MonthView(Month, DateBuilder){
             var {month, year} = router.getCurrentQuery();
             if(!month || !year) {
                 const date = moment();
-                month = date.month()+1
+                month = date.month() + 1;
                 year = date.year();
             }
             return DateBuilder.buildMonth(month, year);

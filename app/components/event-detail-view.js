@@ -23,7 +23,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
     function getDaysForMonth(monthNum, year) {
         const amountOfDays = moment(`${monthNum}-${year}`, 'M-yyyy').daysInMonth();
         const days = _.range(1, amountOfDays + 1).map(date => {
-            return <option value={date} key={date}>{date}</option>
+            return <option value={date} key={date}>{date}</option>;
         });
         return Immutable.List(days);
     }
@@ -32,7 +32,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
             return {
                 eventDetail: null,
                 dateOptions: null
-            }
+            };
         },
         componentDidMount() {
             EventsDetailStore.currentEvent.subscribe(eventDetail => {

@@ -7,7 +7,7 @@ var daySchema = {
 };
 
 function DayRecordFactory() {
-    return class DayRecord extends Immutable.Record(daySchema) {}
+    return class DayRecord extends Immutable.Record(daySchema) {};
 }
 
 export default DayRecordFactory;

@@ -1,0 +1,53 @@
+{
+    "rules": {
+        "curly": [2, "multi-line"],
+        "indent": [
+            2,
+            4
+        ],
+        "quotes": [
+            2,
+            "single"
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "new-cap": [
+            1,
+            {"capIsNew": false},
+            {"newIsCap": true}
+        ],
+        "no-shadow": 0,
+        "no-use-before-define": [
+            2,
+            "nofunc"
+        ],
+        "semi": [
+            2,
+            "always"
+        ],
+        "strict": [
+            2,
+            "never"
+        ]
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "amd": true
+    },
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "globals": {
+        "describe": false,
+        "beforeEach": false,
+        "expect": false,
+        "it": false
+    }
+}
