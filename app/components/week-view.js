@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Immutable from 'immutable';
+import Router from 'react-router';
 
 import Week from './week';
 import WeekDayNamesHeader from './weekday-names-header';
@@ -12,15 +13,12 @@ const {PureRenderMixin} = React.addons;
 WeekView.inject = [Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore];
 function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
     return React.createClass({
-        contextTypes: {
-            router: React.PropTypes.func
-        },
         getInitialState() {
             return {
                 calendarEvents: Immutable.List()
             };
         },
-        mixins: [PureRenderMixin],
+        mixins: [PureRenderMixin, Router.State],
         componentWillMount() {
             this.disposableCalendarEvents = CalendarEventsStore.calendarEvents.subscribe(calendarEvents => {
                 this.setState({calendarEvents});
@@ -30,8 +28,7 @@ function WeekView (Week, WeekDayNamesHeader, DateBuilder, CalendarEventsStore){
             this.disposableCalendarEvents.dispose();
         },
         getWeekData() {
-            const {router} = this.context;
-            const {year, week} = router.getCurrentParams();
+            const {year, week} = this.getParams();
             return DateBuilder.buildWeek(year, week - 1);
         },
         render() {

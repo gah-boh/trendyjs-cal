@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import Router from 'react-router';
 
 import Month from './month';
 import DateBuilder from '../helpers/date-builder';
@@ -7,12 +8,9 @@ import DateBuilder from '../helpers/date-builder';
 MonthView.inject = [Month, DateBuilder];
 function MonthView(Month, DateBuilder){
     return React.createClass({
-        contextTypes: {
-            router: React.PropTypes.func
-        },
+        mixins: [Router.State],
         getMonthData() {
-            const {router} = this.context;
-            var {month, year} = router.getCurrentQuery();
+            var {month, year} = this.getQuery();
             if(!month || !year) {
                 const date = moment();
                 month = date.month() + 1;
