@@ -1,6 +1,6 @@
 import request from 'superagent';
 import Rx from 'rx';
-import {inject} from 'aurelia-dependency-injection';
+import {inject} from 'di';
 import Immutable from 'immutable';
 
 import EventActions from '../actions/event-actions';

@@ -2,7 +2,7 @@ import Rx from 'rx';
 import shortid from 'shortid';
 import assign from 'lodash/object/assign';
 import moment from 'moment';
-import {inject} from 'aurelia-dependency-injection';
+import {inject} from 'di';
 
 import EventRecord from '../models/event-record';
 import EventActions from '../actions/event-actions';

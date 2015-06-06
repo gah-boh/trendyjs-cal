@@ -1,7 +1,7 @@
 import * as babelPolyfill from 'babel/polyfill'; // eslint-disable-line
 import React from 'react';
 import Router from 'react-router';
-import {Container} from 'aurelia-dependency-injection';
+import {Container} from 'di';
 
 import diRegister from './helpers/di-register';
 

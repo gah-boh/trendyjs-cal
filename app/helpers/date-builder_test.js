@@ -1,6 +1,6 @@
 import moment from 'moment';
 import DateBuilder from './date-builder';
-import {Container} from 'aurelia-dependency-injection';
+import {Container} from 'di';
 
 describe('Date Builder', () => {
 

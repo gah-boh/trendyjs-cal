@@ -1,7 +1,7 @@
 import range from 'lodash/utility/range';
 import moment from 'moment';
 import Immutable from 'immutable';
-import {inject} from 'aurelia-dependency-injection';
+import {inject} from 'di';
 
 import DayRecord from '../models/day-record';
 
