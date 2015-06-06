@@ -1,4 +1,6 @@
-var path =  require('path');
+/* eslint-env node */
+
+var path = require('path');
 var WebpackNotifierPlugin = require('webpack-notifier');
 module.exports = {
     entry: './app/app.js',
