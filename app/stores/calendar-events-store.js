@@ -12,6 +12,7 @@ class CalendarEventsStore{
     calendarEvents = new Rx.BehaviorSubject(Immutable.List());
 
     constructor(EventActions, request, EventRecord) {
+        this.request = request;
         var serverEventsStream = Rx.Observable.fromPromise(this.getEventsFromServer())
         .map(events => {
             return Immutable.List(events.map(event => new EventRecord(event)));
