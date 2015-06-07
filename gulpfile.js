@@ -7,6 +7,7 @@ var assign = require('object-assign');
 var karma = require('karma').server;
 var livereload = require('gulp-livereload');
 var path = require('path');
+var eslint = require('gulp-eslint');
 
 var webpackConfig = require('./webpack.config');
 
@@ -46,6 +47,12 @@ gulp.task('test-watch', function() {
     karma.start({
         configFile: path.join(__dirname, '/karma.conf.js')
     });
+});
+
+gulp.task('eslint', function() {
+    return gulp.src(['**/*.js', '!./node_modules/**', '!./app/bundle*'])
+        .pipe(eslint())
+        .pipe(eslint.format());
 });
 
 gulp.task('serve', function() {
