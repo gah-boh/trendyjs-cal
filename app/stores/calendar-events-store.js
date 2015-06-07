@@ -29,7 +29,7 @@ class CalendarEventsStore{
     }
     getEventsFromServer() {
         return new Promise((resolve) => {
-            request.get('/events')
+            this.request.get('/events')
             .end((err, res) => {
                 resolve(res.body);
             });
