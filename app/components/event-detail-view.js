@@ -42,7 +42,7 @@ function EventDetailView(EventsDetailStore, EventActions, TimeRange) {
         },
         mixins: [PureRenderMixin],
         handleClose() {
-            EventActions.currentEventAction.onNext(null);
+            EventActions.selectedtEventAction.onNext(null);
         },
         updateTitle(event) {
             const eventDetail = this.state.eventDetail.set('title', event.target.value);

@@ -14,7 +14,7 @@ function DayEvent(EventActions, EventRecord){
         mixins: [PureRenderMixin],
         handleClick(event) {
             event.stopPropagation();
-            EventActions.currentEventAction.onNext(this.props.eventData);
+            EventActions.selectedtEventAction.onNext(this.props.eventData);
         },
         render() {
             const dayEvent = this.props.eventData;

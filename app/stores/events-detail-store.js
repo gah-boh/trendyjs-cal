@@ -20,7 +20,7 @@ class EventsDetailStore {
             }).merge(dayInfo);
         });
         var removeEvent = EventActions.removeEventAction.map(() => null);
-        this.currentEvent = EventActions.currentEventAction
+        this.currentEvent = EventActions.selectedtEventAction
                                         .merge(createEvent)
                                         .merge(removeEvent);
     }
