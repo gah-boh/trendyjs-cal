@@ -3,7 +3,7 @@ import moment from 'moment';
 
 var today = moment();
 
-var eventSchema = {
+var eventDefaults = {
     id: 0,
     title: 'New Event',
     year: today.year(),
@@ -14,7 +14,7 @@ var eventSchema = {
 };
 
 function EventRecordFactory() {
-    return class EventRecord extends Immutable.Record(eventSchema) {};
+    return class EventRecord extends Immutable.Record(eventDefaults) {};
 }
 
 export default EventRecordFactory;

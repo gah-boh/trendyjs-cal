@@ -1,13 +1,13 @@
 import Immutable from 'immutable';
 
-var daySchema = {
+var dayDefaults = {
     date: 0,
     month: 0,
     year: 0
 };
 
 function DayRecordFactory() {
-    return class DayRecord extends Immutable.Record(daySchema) {};
+    return class DayRecord extends Immutable.Record(dayDefaults) {};
 }
 
 export default DayRecordFactory;
