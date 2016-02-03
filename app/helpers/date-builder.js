@@ -10,12 +10,18 @@ export default class DateBuilder {
     constructor(DayRecord) {
         this.DayRecord = DayRecord;
     }
+    // Build a full week using the week number (0-51)
+    // and corresponding year returning a Day model for
+    // each day.
     buildWeek(yearNumber, weekNumber) {
         var momentDate = moment(`${yearNumber}`, 'YYYY').week(weekNumber);
         var week = this.daysForWeek(momentDate.startOf('week'))
                           .map(this.createDayModel.bind(this));
         return Immutable.List(week);
     }
+    // Build a month using the month number using the month (1-12) and
+    // corresponding year. It will get each week of that month including
+    // weeks that have days of previous and following month.
     buildMonth(month, year) {
         var momentMonth = year ? moment(`${month}-${year}`, 'M-YYYY') : moment(month, 'M') ;
         var weeks = this.weeksForMonth(momentMonth)
@@ -29,6 +35,9 @@ export default class DateBuilder {
             weeks: Immutable.List(weeks)
         };
     }
+    // Create a model of a day
+    // Returns a DayRecord which is an
+    // immutable data stucture.
     createDayModel(momentDay) {
         return new this.DayRecord({
             date: momentDay.date(),
@@ -36,11 +45,16 @@ export default class DateBuilder {
             year: momentDay.year()
         });
     }
+    // Get an array of days for every day of the week
     daysForWeek(startOfWeek) {
         return range(7).map(index => {
             return startOfWeek.clone().add(index, 'day');
         });
     }
+    // Get an array of weeks that correspond to a month.
+    // The week will include days that may fall outside
+    // of current month but also have days that fall inside
+    // current month.
     weeksForMonth(momentMonth) {
         var week = momentMonth.clone().startOf('month').startOf('week');
         var amountOfWeeks = ((week.diff(momentMonth.clone().endOf('month').endOf('week'), 'days') -1) * -1) / 7;
@@ -48,8 +62,9 @@ export default class DateBuilder {
             return week.clone().add(index, 'week');
         });
     }
+    // Get all the months corresponding to the given year.
     monthsForYear(yearNum) {
-        var year = moment(''+yearNum, 'YYYY');
+        var year = moment(''+yearNum, 'YYYY'); // using ''+yearNum to coerce int to string.
         return range(12).map(index => {
             return year.clone().add(index, 'month');
         });
